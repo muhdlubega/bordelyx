@@ -5,6 +5,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import { countryById } from '@/lib/geography';
 import { validMoves, type Run } from '@/lib/engine';
 import { getMapPolicy } from '@/lib/map-policy';
+import {needsWorldAtlas} from '@/lib/atlas-view';
 export interface MapboxAtlasProps {
     run?: Run;
     onSelect?: (id: string) => void;
@@ -43,6 +44,7 @@ export default function MapboxAtlas({ run, onSelect, onError }: MapboxAtlasProps
         if (!r)
             return;
         const policy = getMapPolicy(r);
+        if (needsWorldAtlas(r)) { atlas.setMinZoom(0); atlas.setMaxBounds([[-180,-85],[180,85]]); if (atlas.getZoom() > 2) atlas.fitBounds([[-180,-70],[180,80]],{padding:30,duration:0}); }
         for (const [id, kind] of [...(policy.showCurrentPosition ? [[r.current, 'current']] : []), ...(r.mode === 'pinpoint' ? [] : [[r.target, 'target']]), ...(policy.showCheckpoints ? r.checkpoints.filter(id => !r.collected.includes(id)).map(id => [id, 'intel']) : [])]) {
             const country = countryById[id];
             if (!country)

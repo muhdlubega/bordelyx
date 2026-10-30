@@ -1,4 +1,4 @@
-import { countries, countryById, shortestPath, distanceKm } from './geography';
+import { countries, expeditionCountries, countryById, shortestPath, distanceKm } from './geography';
 export type Mode = 'royale' | 'heist' | 'rush' | 'chain' | 'escape' | 'pinpoint' | 'ghost';
 export type Modifier = 'blind' | 'noLabels' | 'timeRush' | 'hardcore' | 'fog' | 'limited' | 'oneWay' | 'chaos';
 export type Ability = 'dash' | 'shield' | 'scout' | 'reroute' | 'pulse';
@@ -54,7 +54,7 @@ export function initialRun(mode: Mode, seed: string, modifiers: Modifier[] = [],
         const distance = (a: string, b: string) => shortestPath(a, b).length - 1;
         const cost = (id: string) => Math.min(distance(start, id) + distance(id, second) + distance(second, target), distance(start, second) + distance(second, id) + distance(id, target));
         // Intel lives off the direct route, adding a real route-planning decision.
-        const options = countries.filter(c => !path.includes(c.id) && !['VA', 'SM', 'MC', 'LI', 'AD'].includes(c.id))
+        const options = expeditionCountries.filter(c => !path.includes(c.id) && !['VA', 'SM', 'MC', 'LI', 'AD'].includes(c.id))
             .filter(c => cost(c.id) > path.length - 1).sort((a, b) => cost(a.id) - cost(b.id)).slice(0, 6);
         const first = options[Math.floor(rand() * options.length)].id;
         checkpoints.push(first, second);
@@ -67,9 +67,9 @@ export function initialRun(mode: Mode, seed: string, modifiers: Modifier[] = [],
             }
         }
     }
-    const forbidden = new Set(protectedPaths.flat()), blocked = countries.filter(c => !forbidden.has(c.id) && !['VA', 'SM', 'MC', 'LI', 'AD'].includes(c.id)).filter(() => rand() < .06).map(c => c.id);
+    const forbidden = new Set(protectedPaths.flat()), blocked = expeditionCountries.filter(c => !forbidden.has(c.id) && !['VA', 'SM', 'MC', 'LI', 'AD'].includes(c.id)).filter(() => rand() < .06).map(c => c.id);
     const dangerMargin = (id: string) => Math.min(...path.map((step, index) => shortestPath(id, step).length - 1 - Math.floor(index / (mode === 'escape' ? 1 : 2))));
-    const dangerOrigin = countries.filter(c => !forbidden.has(c.id)).sort((a, b) => dangerMargin(b.id) - dangerMargin(a.id))[0].id;
+    const dangerOrigin = expeditionCountries.filter(c => !forbidden.has(c.id)).sort((a, b) => dangerMargin(b.id) - dangerMargin(a.id))[0].id;
     let optimalMoves = path.length - 1;
     if (mode === 'heist') {
         optimalMoves = Math.min(...[checkpoints, [...checkpoints].reverse()].map(order => { let at = start, total = 0; for (const goal of [...order, target]) {
@@ -111,12 +111,25 @@ function finish(r: Run): Run {
     }
     return r;
 }
+/** Invalid and unknown guesses use the same penalty and Hardcore rule. */
+export function rejectGuess(run: Run, message: string): Run {
+    if (run.status !== 'playing') return run;
+    const r = copy(run);
+    r.invalidMoves++;
+    r.score = Math.max(0, r.score - 50);
+    r.message = message;
+    if (r.modifiers.includes('hardcore')) {
+        r.status = 'lost';
+        r.message = `Hardcore: ${message} One wrong guess ends the run.`;
+    }
+    return r;
+}
 export function move(run: Run, countryId: string): Run {
     if (run.status !== 'playing')
         return run;
     const r = copy(run), id = countryId.toUpperCase();
     if (!countryById[id])
-        return { ...r, message: r.mode === 'pinpoint' ? 'Choose a country on the map.' : 'Type a country name to cross a border.' };
+        return rejectGuess(run, 'That country name is not recognized. Try another country.');
     if (r.mode === 'pinpoint') {
         const km = distanceKm(id, r.target);
         r.route = [id];
@@ -128,14 +141,13 @@ export function move(run: Run, countryId: string): Run {
         return r;
     }
     if (!validMoves(r).includes(id)) {
-        r.invalidMoves++;
-        r.score = Math.max(0, r.score - 50);
-        r.message = r.blocked.includes(id) ? 'That border is blocked. Reroute can reopen an obstacle.' : r.danger.includes(id) ? 'Danger zone. Find another route.' : 'No valid land border. Try a neighboring country.';
-        if (r.modifiers.includes('hardcore')) {
-            r.status = 'lost';
-            r.message = 'Hardcore: one invalid border ends the run.';
-        }
-        return r;
+        const name = countryById[id].name;
+        const reason = r.blocked.includes(id) ? `${name} is blocked. Try another country or use Reroute.`
+            : r.danger.includes(id) ? `${name} is inside the danger zone.`
+            : (r.mode === 'chain' || r.modifiers.includes('oneWay')) && r.route.includes(id) ? `You already visited ${name}. Choose a new country.`
+            : r.effects.dash ? `${name} is not reachable within two valid land borders of ${countryById[r.current].name}.`
+            : `${name} does not share a valid land border with ${countryById[r.current].name}.`;
+        return rejectGuess(run, reason);
     }
     r.history.push(snapshot(run));
     const steps = r.effects.dash ? shortestPath(r.current, id, [...r.blocked, ...r.danger, ...((r.mode === 'chain' || r.modifiers.includes('oneWay')) ? r.route.filter(x => x !== r.current) : [])]).slice(1) : [id];

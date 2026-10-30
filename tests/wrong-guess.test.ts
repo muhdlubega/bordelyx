@@ -1,0 +1,7 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {initialRun,move,rejectGuess} from '../lib/engine';
+test('unknown guesses are marked wrong, penalized and do not change the route',()=>{const run={...initialRun('rush','wrong'),score:200};const rejected=rejectGuess(run,'Atlantis is not recognized.');assert.equal(rejected.score,150);assert.equal(rejected.invalidMoves,1);assert.equal(rejected.current,run.current);assert.deepEqual(rejected.route,run.route);assert.equal(rejected.turn,0);assert.equal(run.score,200);assert.match(rejected.message,/Atlantis/)});
+test('Hardcore treats unknown and recognized invalid guesses consistently',()=>{const run=initialRun('rush','hardcore',['hardcore']);assert.equal(rejectGuess(run,'Unknown country').status,'lost');assert.equal(move(run,'ZZ').status,'lost')});
+test('ended runs reject further guesses without changing results',()=>{const run={...initialRun('rush','ended'),status:'lost' as const};assert.equal(rejectGuess(run,'Wrong'),run)});
+test('real worldwide countries are evaluated against borders rather than rejected as unknown',()=>{const run={...initialRun('rush','global'),current:'PT',route:['PT'],score:200};const wrong=move(run,'CA');assert.equal(wrong.invalidMoves,1);assert.match(wrong.message,/Canada.*Portugal/);const correct=move({...run,current:'RU',route:['RU'],blocked:[],danger:[]},'CN');assert.equal(correct.current,'CN');assert.equal(correct.invalidMoves,0)});

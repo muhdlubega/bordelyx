@@ -27,3 +27,17 @@
 - Ghost Route retains exactly two markers after a valid typed move, with zero country shapes or route trails.
 - Desktop (1440px), phone (390px) and narrow pane (319px) layouts verified without horizontal overflow.
 - Release packaging uses a clean source/output checkout so the unchanged local secret check does not scan ignored development dependencies; the existing user development server is preserved.
+
+## Footer, policy and free-entry update
+- [x] Add visible Sketchfab model credit and shared footer on all pages.
+- [x] Add accurate privacy policy and terms routes with footer links.
+- [x] Remove the cosmetic streamer mode toggle and styling.
+- [x] Accept worldwide country guesses with explicit correct/wrong feedback and consistent penalties.
+- [x] Verify global borders, unknown guesses, footer navigation, responsive layout and production build; prepare the existing Site publication.
+
+### Footer and input review
+- Added shared footer credit and /privacy/ and /terms/ pages, verified through browser navigation. Policies reflect current local storage and hosting behavior without invented contact details.
+- Removed streamer state, toggle and CSS; normal challenge sharing remains.
+- 250 local country/territory names and 323 symmetric land borders; seeded challenges retain the original 58-country objective pool.
+- 38 tests pass; TypeScript and production static export include both new policy pages.
+- Browser verified Canada as a wrong border guess (red ×, retained field), Atlantis as an unknown guess, and valid Poland → Russia → China movement (green feedback, world atlas framing).

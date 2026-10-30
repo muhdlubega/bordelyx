@@ -1,14 +1,14 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { countries, countryById, shortestPath } from '../lib/geography';
+import { countries, expeditionCountries, countryById, shortestPath } from '../lib/geography';
 import { initialRun, move, useAbility, undoMove, tick, validMoves, type Mode } from '../lib/engine';
-test('local borders are symmetric and every node is reachable', () => {
+test('global borders are symmetric and seeded expedition countries remain reachable', () => {
     for (const c of countries) {
         for (const id of c.neighbors) {
             assert.ok(countryById[id], `${c.id} → ${id} exists`);
             assert.ok(countryById[id].neighbors.includes(c.id), `${c.id} ↔ ${id}`);
         }
-        assert.ok(shortestPath('PT', c.id).length);
+        if (expeditionCountries.includes(c)) assert.ok(shortestPath('PT', c.id).length);
     }
     assert.deepEqual(shortestPath('PT', 'ES'), ['PT', 'ES']);
     assert.deepEqual(shortestPath('PT', 'ES', ['ES']), []);

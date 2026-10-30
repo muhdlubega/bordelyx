@@ -1,0 +1,8 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {countries,countryById,expeditionCountries,shortestPath} from '../lib/geography';
+const borders=(a:string,b:string)=>{assert.ok(countryById[a].neighbors.includes(b),`${a} → ${b}`);assert.ok(countryById[b].neighbors.includes(a),`${b} → ${a}`)};
+test('worldwide graph includes country and territory names beyond the expedition pool',()=>{assert.equal(countries.length,250);assert.equal(expeditionCountries.length,58);for(const id of ['CN','JP','US','CA','AU','NZ','BR','SG','MT'])assert.ok(countryById[id]);assert.equal(new Set(countries.map(c=>c.id)).size,countries.length);for(const c of countries){assert.ok(Number.isFinite(c.lon)&&Number.isFinite(c.lat));assert.ok(Math.abs(c.lon)<=180&&Math.abs(c.lat)<=90)}});
+test('real worldwide land borders are playable in both directions',()=>{for(const [a,b] of [['RU','CN'],['US','CA'],['US','MX'],['IN','NP'],['TH','MY'],['GB','IE'],['ZA','LS'],['BW','ZM']])borders(a,b);assert.deepEqual(shortestPath('CA','MX'),['CA','US','MX'])});
+test('islands and water gaps do not become false land borders',()=>{for(const id of ['JP','AU','NZ','FJ','MT','SG'])assert.equal(countryById[id].neighbors.length,0,id);assert.deepEqual(shortestPath('FR','JP'),[]);assert.ok(!countryById.FR.neighbors.includes('BR'));assert.ok(!countryById.GB.neighbors.includes('FR'));assert.ok(!countryById.ES.neighbors.includes('MA'));assert.ok(!countryById.NA.neighbors.includes('ZW'))});
+test('tiny borders are preserved even when omitted by world polygons',()=>{for(const [a,b]of[['AD','FR'],['VA','IT'],['LI','CH'],['GI','ES'],['PS','EG'],['MF','SX'],['HK','CN']])borders(a,b)});

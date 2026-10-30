@@ -4,6 +4,7 @@ import { useEffect, useId, useMemo, useState } from 'react';
 import { countries, countryById } from '@/lib/geography';
 import { validMoves, upcomingDanger, type Run } from '@/lib/engine';
 import { getMapPolicy } from '@/lib/map-policy';
+import {needsWorldAtlas,projectAtlas} from '@/lib/atlas-view';
 
 type Geometry = { type: string; coordinates: number[][][] | number[][][][] };
 type Feature = { properties: Record<string, string>; geometry: Geometry };
@@ -34,9 +35,8 @@ export default function Atlas({ run, onSelect, decorative = false }: AtlasProps)
         });
         return () => { live = false; };
     }, [policy.showCountryShapes]);
-    const project = (lon: number, lat: number): [number, number] => decorative
-        ? [(lon + 180) * 1000 / 360, (90 - lat) * 600 / 180]
-        : [(lon + 15) * 1000 / 76, (73 - lat) * 720 / 55];
+    const worldView = decorative || needsWorldAtlas(run);
+    const project = (lon:number,lat:number):[number,number] => projectAtlas(lon,lat,worldView);
     const paths = useMemo(() => features.map(feature => {
         const code = feature.properties.ISO_A2_EH || feature.properties.ISO_A2;
         const id = countryById[code] ? code : feature.properties.ADMIN === 'Kosovo' ? 'XK' : '';
@@ -47,7 +47,7 @@ export default function Atlas({ run, onSelect, decorative = false }: AtlasProps)
             `${i ? 'L' : 'M'}${project(lon, lat).map(n => n.toFixed(1)).join(',')}`
         ).join(' ') + 'Z').join(' ')).join(' ');
         return { id, name: feature.properties.ADMIN, d };
-    }), [features, decorative]);
+    }), [features, worldView]);
     const fog = run?.status === 'playing' && run.modifiers.includes('fog');
     const neighbors = policy.showNeighborHints && run ? validMoves(run) : [];
     const nextWave = policy.showScoutHints && run ? upcomingDanger(run) : [];
@@ -72,7 +72,7 @@ export default function Atlas({ run, onSelect, decorative = false }: AtlasProps)
     if (!policy.showMap) return <div className="atlas-blind" role="img" aria-label="Blind modifier: map hidden. Navigate using typed country names."><span style={{ fontSize: 64, opacity: .45 }}>◉</span><h2>Trust your inner atlas.</h2><p>Blind mode is active. Navigate using country names.</p><small>Your route will be revealed at the finish.</small></div>;
     return <div className={policy.onlyEndpoints ? 'atlas-surface atlas-endpoints-only' : 'atlas-surface'} style={{ width: '100%', height: '100%', position: 'relative', minHeight: 300, overflow: 'hidden', background: 'radial-gradient(ellipse at 50% 48%, #153031 0%, #0d2027 68%, #0b1b22 100%)' }}>
         {failed && policy.showCountryShapes && <p role="alert" style={{ position: 'absolute', zIndex: 2, top: 12, left: 20 }}>Atlas unavailable. You can still navigate with country search.</p>}
-        <svg className="atlas-map" viewBox={decorative ? '0 0 1000 600' : '0 0 1000 720'} role="img" aria-label={policy.onlyEndpoints ? 'Ghost Route: only the start and extraction points are visible. Type country names to navigate.' : selectable ? 'Unlabeled country atlas. Select the requested country.' : 'Unlabeled strategy atlas. Enter country names below to move.'} style={{ display: 'block', width: '100%', height: '100%', minHeight: 300 }}>
+        <svg className="atlas-map" viewBox={worldView ? '0 0 1000 600' : '0 0 1000 720'} data-atlas-view={worldView ? 'world' : 'regional'} role="img" aria-label={policy.onlyEndpoints ? 'Ghost Route: only the start and extraction points are visible. Type country names to navigate.' : selectable ? 'Unlabeled country atlas. Select the requested country.' : 'Unlabeled strategy atlas. Enter country names below to move.'} style={{ display: 'block', width: '100%', height: '100%', minHeight: 300 }}>
             <defs>
                 <pattern id={`grid-${instance}`} width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0V50" fill="none" stroke="#7cadab" strokeWidth=".5" opacity=".13" /></pattern>
                 <filter id={`glow-${instance}`} x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="4" /></filter>
@@ -88,7 +88,7 @@ export default function Atlas({ run, onSelect, decorative = false }: AtlasProps)
                 const [x, y] = project(countryById[id].lon, countryById[id].lat);
                 return <g className="endpoint-pin" key={id} pointerEvents="none"><circle cx={x} cy={y} r="22" fill={index ? '#7be2d0' : '#bff5b3'} opacity=".1" /><circle cx={x} cy={y} r="9" fill={index ? '#7be2d0' : '#bff5b3'} stroke="#16392e" strokeWidth="3" /><text x={x} y={y + 36} textAnchor="middle" fontSize="12" fill="#bcd9cb" letterSpacing="2">{index ? 'EXTRACTION' : 'START'}</text></g>;
             })}
-            {!decorative && !policy.onlyEndpoints && countries.filter(c => !obscured(c.id)).map(c => {
+            {!decorative && !policy.onlyEndpoints && countries.filter(c => !obscured(c.id) && (!worldView || run?.route.includes(c.id) || c.id === run?.target || run?.checkpoints.includes(c.id))).map(c => {
                 const [x, y] = project(c.lon, c.lat);
                 const current = policy.showCurrentPosition && run?.current === c.id;
                 const target = run?.target === c.id && run.mode !== 'pinpoint';
@@ -103,7 +103,7 @@ export default function Atlas({ run, onSelect, decorative = false }: AtlasProps)
                 </g>;
             })}
             {!decorative && <g transform="translate(940 58)" opacity=".65" pointerEvents="none"><text y="-18" fill="#b6d6cc" textAnchor="middle" fontSize="10">N</text><path d="M0-10L5 8 0 4-5 8Z" fill="#bddac9" /><circle r="25" fill="none" stroke="#719e96" strokeWidth=".7" /></g>}
-            <text x="22" y={decorative ? 580 : 697} fill="#68918b" fontSize="8" letterSpacing="2" pointerEvents="none">{policy.onlyEndpoints ? 'GHOST ROUTE · TRUST YOUR INNER ATLAS' : 'NATURAL EARTH · STRATEGIC ATLAS'}</text>
+            <text x="22" y={worldView ? 580 : 697} fill="#68918b" fontSize="8" letterSpacing="2" pointerEvents="none">{policy.onlyEndpoints ? 'GHOST ROUTE · TRUST YOUR INNER ATLAS' : 'NATURAL EARTH · STRATEGIC ATLAS'}</text>
         </svg>
     </div>;
 }

@@ -1,5 +1,5 @@
 {
-  "scope": "Europe, North Africa and western Asia; mainland land borders only. Kosovo modeled separately; no claim regarding status.",
+  "scope": "Worldwide ISO country/territory names plus Kosovo. Borders derived from bundled Natural Earth shared polygon segments, supplemented by the original regional microstate graph; no ferries or France overseas shortcuts. Small islands have no land borders. Cartography is not a statement regarding sovereignty.",
   "countries": [
     {
       "id": "PT",
@@ -8,6 +8,9 @@
       "lat": 39.5,
       "neighbors": [
         "ES"
+      ],
+      "aliases": [
+        "Portuguese Republic"
       ]
     },
     {
@@ -18,7 +21,11 @@
       "neighbors": [
         "PT",
         "FR",
-        "AD"
+        "AD",
+        "GI"
+      ],
+      "aliases": [
+        "Kingdom of Spain"
       ]
     },
     {
@@ -29,7 +36,8 @@
       "neighbors": [
         "ES",
         "FR"
-      ]
+      ],
+      "aliases": []
     },
     {
       "id": "FR",
@@ -45,6 +53,9 @@
         "CH",
         "IT",
         "MC"
+      ],
+      "aliases": [
+        "French Republic"
       ]
     },
     {
@@ -54,7 +65,8 @@
       "lat": 43.74,
       "neighbors": [
         "FR"
-      ]
+      ],
+      "aliases": []
     },
     {
       "id": "BE",
@@ -66,6 +78,9 @@
         "NL",
         "DE",
         "LU"
+      ],
+      "aliases": [
+        "Kingdom of Belgium"
       ]
     },
     {
@@ -76,6 +91,9 @@
       "neighbors": [
         "BE",
         "DE"
+      ],
+      "aliases": [
+        "Kingdom of the Netherlands"
       ]
     },
     {
@@ -87,6 +105,9 @@
         "BE",
         "FR",
         "DE"
+      ],
+      "aliases": [
+        "Grand Duchy of Luxembourg"
       ]
     },
     {
@@ -104,6 +125,9 @@
         "CZ",
         "PL",
         "DK"
+      ],
+      "aliases": [
+        "Federal Republic of Germany"
       ]
     },
     {
@@ -113,6 +137,9 @@
       "lat": 56.2,
       "neighbors": [
         "DE"
+      ],
+      "aliases": [
+        "Kingdom of Denmark"
       ]
     },
     {
@@ -126,6 +153,9 @@
         "AT",
         "LI",
         "IT"
+      ],
+      "aliases": [
+        "Swiss Confederation"
       ]
     },
     {
@@ -136,7 +166,8 @@
       "neighbors": [
         "CH",
         "AT"
-      ]
+      ],
+      "aliases": []
     },
     {
       "id": "AT",
@@ -152,6 +183,9 @@
         "HU",
         "SK",
         "CZ"
+      ],
+      "aliases": [
+        "Republic of Austria"
       ]
     },
     {
@@ -166,6 +200,9 @@
         "SI",
         "SM",
         "VA"
+      ],
+      "aliases": [
+        "Italian Republic"
       ]
     },
     {
@@ -175,7 +212,8 @@
       "lat": 43.94,
       "neighbors": [
         "IT"
-      ]
+      ],
+      "aliases": []
     },
     {
       "id": "VA",
@@ -184,7 +222,8 @@
       "lat": 41.9,
       "neighbors": [
         "IT"
-      ]
+      ],
+      "aliases": []
     },
     {
       "id": "CZ",
@@ -196,6 +235,9 @@
         "AT",
         "SK",
         "PL"
+      ],
+      "aliases": [
+        "Czech Republic"
       ]
     },
     {
@@ -211,6 +253,9 @@
         "BY",
         "LT",
         "RU"
+      ],
+      "aliases": [
+        "Republic of Poland"
       ]
     },
     {
@@ -224,6 +269,9 @@
         "UA",
         "HU",
         "AT"
+      ],
+      "aliases": [
+        "Slovak Republic"
       ]
     },
     {
@@ -239,6 +287,9 @@
         "RS",
         "HR",
         "SI"
+      ],
+      "aliases": [
+        "Republic of Hungary"
       ]
     },
     {
@@ -251,6 +302,9 @@
         "AT",
         "HU",
         "HR"
+      ],
+      "aliases": [
+        "Republic of Slovenia"
       ]
     },
     {
@@ -264,6 +318,9 @@
         "RS",
         "BA",
         "ME"
+      ],
+      "aliases": [
+        "Republic of Croatia"
       ]
     },
     {
@@ -275,6 +332,10 @@
         "HR",
         "RS",
         "ME"
+      ],
+      "aliases": [
+        "Bosnia and Herzegovina",
+        "Bosnia and Herz."
       ]
     },
     {
@@ -288,7 +349,8 @@
         "RS",
         "XK",
         "AL"
-      ]
+      ],
+      "aliases": []
     },
     {
       "id": "RS",
@@ -304,6 +366,9 @@
         "ME",
         "BA",
         "HR"
+      ],
+      "aliases": [
+        "Republic of Serbia"
       ]
     },
     {
@@ -316,6 +381,9 @@
         "ME",
         "AL",
         "MK"
+      ],
+      "aliases": [
+        "Republic of Kosovo"
       ]
     },
     {
@@ -328,6 +396,9 @@
         "XK",
         "MK",
         "GR"
+      ],
+      "aliases": [
+        "Republic of Albania"
       ]
     },
     {
@@ -341,6 +412,9 @@
         "BG",
         "GR",
         "AL"
+      ],
+      "aliases": [
+        "Republic of North Macedonia"
       ]
     },
     {
@@ -353,6 +427,9 @@
         "MK",
         "BG",
         "TR"
+      ],
+      "aliases": [
+        "Hellenic Republic"
       ]
     },
     {
@@ -366,6 +443,9 @@
         "MK",
         "GR",
         "TR"
+      ],
+      "aliases": [
+        "Republic of Bulgaria"
       ]
     },
     {
@@ -379,7 +459,8 @@
         "BG",
         "UA",
         "MD"
-      ]
+      ],
+      "aliases": []
     },
     {
       "id": "MD",
@@ -389,6 +470,9 @@
       "neighbors": [
         "RO",
         "UA"
+      ],
+      "aliases": [
+        "Republic of Moldova"
       ]
     },
     {
@@ -404,7 +488,8 @@
         "MD",
         "BY",
         "RU"
-      ]
+      ],
+      "aliases": []
     },
     {
       "id": "BY",
@@ -417,6 +502,9 @@
         "LV",
         "RU",
         "UA"
+      ],
+      "aliases": [
+        "Republic of Belarus"
       ]
     },
     {
@@ -429,6 +517,9 @@
         "RU",
         "BY",
         "LV"
+      ],
+      "aliases": [
+        "Republic of Lithuania"
       ]
     },
     {
@@ -441,6 +532,9 @@
         "BY",
         "RU",
         "EE"
+      ],
+      "aliases": [
+        "Republic of Latvia"
       ]
     },
     {
@@ -451,6 +545,9 @@
       "neighbors": [
         "LV",
         "RU"
+      ],
+      "aliases": [
+        "Republic of Estonia"
       ]
     },
     {
@@ -468,7 +565,14 @@
         "GE",
         "AZ",
         "LT",
-        "PL"
+        "PL",
+        "KZ",
+        "KP",
+        "CN",
+        "MN"
+      ],
+      "aliases": [
+        "Russian Federation"
       ]
     },
     {
@@ -480,6 +584,9 @@
         "SE",
         "NO",
         "RU"
+      ],
+      "aliases": [
+        "Republic of Finland"
       ]
     },
     {
@@ -490,6 +597,9 @@
       "neighbors": [
         "NO",
         "FI"
+      ],
+      "aliases": [
+        "Kingdom of Sweden"
       ]
     },
     {
@@ -501,6 +611,9 @@
         "SE",
         "FI",
         "RU"
+      ],
+      "aliases": [
+        "Kingdom of Norway"
       ]
     },
     {
@@ -517,6 +630,10 @@
         "IR",
         "IQ",
         "SY"
+      ],
+      "aliases": [
+        "Turkey",
+        "Republic of Turkey"
       ]
     },
     {
@@ -529,7 +646,8 @@
         "AZ",
         "AM",
         "TR"
-      ]
+      ],
+      "aliases": []
     },
     {
       "id": "AM",
@@ -541,6 +659,9 @@
         "AZ",
         "IR",
         "TR"
+      ],
+      "aliases": [
+        "Republic of Armenia"
       ]
     },
     {
@@ -554,6 +675,9 @@
         "AM",
         "IR",
         "TR"
+      ],
+      "aliases": [
+        "Republic of Azerbaijan"
       ]
     },
     {
@@ -565,7 +689,13 @@
         "TR",
         "AM",
         "AZ",
-        "IQ"
+        "IQ",
+        "PK",
+        "AF",
+        "TM"
+      ],
+      "aliases": [
+        "Islamic Republic of Iran"
       ]
     },
     {
@@ -580,6 +710,9 @@
         "JO",
         "SA",
         "KW"
+      ],
+      "aliases": [
+        "Republic of Iraq"
       ]
     },
     {
@@ -593,6 +726,9 @@
         "JO",
         "IL",
         "LB"
+      ],
+      "aliases": [
+        "Syrian Arab Republic"
       ]
     },
     {
@@ -603,6 +739,9 @@
       "neighbors": [
         "SY",
         "IL"
+      ],
+      "aliases": [
+        "Lebanese Republic"
       ]
     },
     {
@@ -614,7 +753,11 @@
         "LB",
         "SY",
         "JO",
-        "EG"
+        "EG",
+        "PS"
+      ],
+      "aliases": [
+        "State of Israel"
       ]
     },
     {
@@ -626,7 +769,11 @@
         "SY",
         "IQ",
         "SA",
-        "IL"
+        "IL",
+        "PS"
+      ],
+      "aliases": [
+        "Hashemite Kingdom of Jordan"
       ]
     },
     {
@@ -637,7 +784,14 @@
       "neighbors": [
         "JO",
         "IQ",
-        "KW"
+        "KW",
+        "AE",
+        "QA",
+        "OM",
+        "YE"
+      ],
+      "aliases": [
+        "Kingdom of Saudi Arabia"
       ]
     },
     {
@@ -648,6 +802,9 @@
       "neighbors": [
         "IQ",
         "SA"
+      ],
+      "aliases": [
+        "State of Kuwait"
       ]
     },
     {
@@ -657,7 +814,12 @@
       "lat": 26.8,
       "neighbors": [
         "IL",
-        "LY"
+        "LY",
+        "SD",
+        "PS"
+      ],
+      "aliases": [
+        "Arab Republic of Egypt"
       ]
     },
     {
@@ -668,8 +830,12 @@
       "neighbors": [
         "EG",
         "TN",
-        "DZ"
-      ]
+        "DZ",
+        "SD",
+        "TD",
+        "NE"
+      ],
+      "aliases": []
     },
     {
       "id": "TN",
@@ -679,6 +845,9 @@
       "neighbors": [
         "LY",
         "DZ"
+      ],
+      "aliases": [
+        "Republic of Tunisia"
       ]
     },
     {
@@ -689,7 +858,14 @@
       "neighbors": [
         "TN",
         "LY",
-        "MA"
+        "MA",
+        "EH",
+        "ML",
+        "MR",
+        "NE"
+      ],
+      "aliases": [
+        "People's Democratic Republic of Algeria"
       ]
     },
     {
@@ -698,7 +874,2282 @@
       "lon": -6.4,
       "lat": 32,
       "neighbors": [
+        "DZ",
+        "EH"
+      ],
+      "aliases": [
+        "Kingdom of Morocco"
+      ]
+    },
+    {
+      "id": "AE",
+      "name": "United Arab Emirates",
+      "lon": 54.5473,
+      "lat": 23.4663,
+      "neighbors": [
+        "OM",
+        "SA"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "AF",
+      "name": "Afghanistan",
+      "lon": 66.4966,
+      "lat": 34.1643,
+      "neighbors": [
+        "UZ",
+        "PK",
+        "TJ",
+        "CN",
+        "IR",
+        "TM"
+      ],
+      "aliases": [
+        "Islamic State of Afghanistan"
+      ]
+    },
+    {
+      "id": "AG",
+      "name": "Antigua & Barbuda",
+      "lon": -61.8,
+      "lat": 17.1,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "AI",
+      "name": "Anguilla",
+      "lon": -63.1,
+      "lat": 18.2,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "AO",
+      "name": "Angola",
+      "lon": 17.9842,
+      "lat": -12.1828,
+      "neighbors": [
+        "CD",
+        "NA",
+        "CG",
+        "ZM"
+      ],
+      "aliases": [
+        "People's Republic of Angola"
+      ]
+    },
+    {
+      "id": "AQ",
+      "name": "Antarctica",
+      "lon": 35.8855,
+      "lat": -79.8432,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "AR",
+      "name": "Argentina",
+      "lon": -64.1733,
+      "lat": -33.5012,
+      "neighbors": [
+        "CL",
+        "UY",
+        "BO",
+        "PY",
+        "BR"
+      ],
+      "aliases": [
+        "Argentine Republic"
+      ]
+    },
+    {
+      "id": "AS",
+      "name": "American Samoa",
+      "lon": -170.7,
+      "lat": -14.3,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "AU",
+      "name": "Australia",
+      "lon": 134.0497,
+      "lat": -24.1295,
+      "neighbors": [],
+      "aliases": [
+        "Commonwealth of Australia"
+      ]
+    },
+    {
+      "id": "AW",
+      "name": "Aruba",
+      "lon": -69.97,
+      "lat": 12.52,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "AX",
+      "name": "Åland Islands",
+      "lon": 19.9,
+      "lat": 60.2,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "BB",
+      "name": "Barbados",
+      "lon": -59.54,
+      "lat": 13.18,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "BD",
+      "name": "Bangladesh",
+      "lon": 89.685,
+      "lat": 24.215,
+      "neighbors": [
+        "MM",
+        "IN"
+      ],
+      "aliases": [
+        "People's Republic of Bangladesh"
+      ]
+    },
+    {
+      "id": "BF",
+      "name": "Burkina Faso",
+      "lon": -1.3639,
+      "lat": 12.673,
+      "neighbors": [
+        "ML",
+        "BJ",
+        "NE",
+        "TG",
+        "GH",
+        "CI"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "BH",
+      "name": "Bahrain",
+      "lon": 50.55,
+      "lat": 26.05,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "BI",
+      "name": "Burundi",
+      "lon": 29.9171,
+      "lat": -3.3328,
+      "neighbors": [
+        "TZ",
+        "CD",
+        "RW"
+      ],
+      "aliases": [
+        "Republic of Burundi"
+      ]
+    },
+    {
+      "id": "BJ",
+      "name": "Benin",
+      "lon": 2.352,
+      "lat": 10.3248,
+      "neighbors": [
+        "TG",
+        "BF",
+        "NE",
+        "NG"
+      ],
+      "aliases": [
+        "Republic of Benin"
+      ]
+    },
+    {
+      "id": "BL",
+      "name": "St. Barthélemy",
+      "lon": -62.83,
+      "lat": 17.9,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "BM",
+      "name": "Bermuda",
+      "lon": -64.75,
+      "lat": 32.3,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "BN",
+      "name": "Brunei",
+      "lon": 114.5519,
+      "lat": 4.4483,
+      "neighbors": [
+        "MY"
+      ],
+      "aliases": [
+        "Brunei Darussalam",
+        "Negara Brunei Darussalam"
+      ]
+    },
+    {
+      "id": "BO",
+      "name": "Bolivia",
+      "lon": -64.5934,
+      "lat": -16.666,
+      "neighbors": [
+        "AR",
+        "CL",
+        "BR",
+        "PY",
+        "PE"
+      ],
+      "aliases": [
+        "Plurinational State of Bolivia"
+      ]
+    },
+    {
+      "id": "BQ",
+      "name": "Caribbean Netherlands",
+      "lon": -68.3,
+      "lat": 12.2,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "BR",
+      "name": "Brazil",
+      "lon": -49.5594,
+      "lat": -12.0987,
+      "neighbors": [
+        "AR",
+        "UY",
+        "PY",
+        "BO",
+        "PE",
+        "CO",
+        "VE",
+        "GY",
+        "SR",
+        "GF"
+      ],
+      "aliases": [
+        "Federative Republic of Brazil"
+      ]
+    },
+    {
+      "id": "BS",
+      "name": "Bahamas",
+      "lon": -77.1467,
+      "lat": 26.4018,
+      "neighbors": [],
+      "aliases": [
+        "The Bahamas",
+        "Commonwealth of the Bahamas",
+        "Bahamas, The"
+      ]
+    },
+    {
+      "id": "BT",
+      "name": "Bhutan",
+      "lon": 90.0403,
+      "lat": 27.5367,
+      "neighbors": [
+        "IN",
+        "CN"
+      ],
+      "aliases": [
+        "Kingdom of Bhutan"
+      ]
+    },
+    {
+      "id": "BV",
+      "name": "Bouvet Island",
+      "lon": 3.36,
+      "lat": -54.42,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "BW",
+      "name": "Botswana",
+      "lon": 24.1792,
+      "lat": -22.1026,
+      "neighbors": [
+        "ZA",
+        "ZW",
+        "NA",
+        "ZM"
+      ],
+      "aliases": [
+        "Republic of Botswana"
+      ]
+    },
+    {
+      "id": "BZ",
+      "name": "Belize",
+      "lon": -88.713,
+      "lat": 17.2021,
+      "neighbors": [
+        "MX",
+        "GT"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "CA",
+      "name": "Canada",
+      "lon": -101.9107,
+      "lat": 60.3243,
+      "neighbors": [
+        "US"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "CC",
+      "name": "Cocos (Keeling) Islands",
+      "lon": 96.83,
+      "lat": -12.17,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "CD",
+      "name": "Democratic Republic of the Congo",
+      "lon": 23.4588,
+      "lat": -1.8582,
+      "neighbors": [
+        "TZ",
+        "ZM",
+        "AO",
+        "CG",
+        "CF",
+        "SS",
+        "UG",
+        "RW",
+        "BI"
+      ],
+      "aliases": [
+        "Dem. Rep. Congo",
+        "Congo, Democratic Republic of the"
+      ]
+    },
+    {
+      "id": "CF",
+      "name": "Central African Republic",
+      "lon": 20.9069,
+      "lat": 6.9897,
+      "neighbors": [
+        "CD",
+        "SD",
+        "TD",
+        "CM",
+        "CG",
+        "SS"
+      ],
+      "aliases": [
+        "Central African Rep."
+      ]
+    },
+    {
+      "id": "CG",
+      "name": "Republic of the Congo",
+      "lon": 15.9005,
+      "lat": 0.1423,
+      "neighbors": [
+        "CD",
+        "CM",
+        "CF",
+        "AO",
+        "GA"
+      ],
+      "aliases": [
+        "Congo",
+        "Congo, Republic of the"
+      ]
+    },
+    {
+      "id": "CI",
+      "name": "Côte d’Ivoire",
+      "lon": -5.5686,
+      "lat": 7.4914,
+      "neighbors": [
+        "ML",
+        "GH",
+        "BF",
+        "LR",
+        "GN"
+      ],
+      "aliases": [
+        "Ivory Coast",
+        "Côte d'Ivoire",
+        "Republic of Ivory Coast",
+        "Cote D'ivoire"
+      ]
+    },
+    {
+      "id": "CK",
+      "name": "Cook Islands",
+      "lon": -159.78,
+      "lat": -21.24,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "CL",
+      "name": "Chile",
+      "lon": -72.3189,
+      "lat": -38.1518,
+      "neighbors": [
+        "AR",
+        "BO",
+        "PE"
+      ],
+      "aliases": [
+        "Republic of Chile"
+      ]
+    },
+    {
+      "id": "CM",
+      "name": "Cameroon",
+      "lon": 12.4735,
+      "lat": 4.585,
+      "neighbors": [
+        "TD",
+        "NE",
+        "NG",
+        "CF",
+        "CG",
+        "GA",
+        "GQ"
+      ],
+      "aliases": [
+        "Republic of Cameroon"
+      ]
+    },
+    {
+      "id": "CN",
+      "name": "China",
+      "lon": 106.3373,
+      "lat": 32.4982,
+      "neighbors": [
+        "KZ",
+        "RU",
+        "LA",
+        "MM",
+        "VN",
+        "KP",
+        "MN",
+        "IN",
+        "BT",
+        "NP",
+        "PK",
+        "AF",
+        "TJ",
+        "KG",
+        "HK",
+        "MO"
+      ],
+      "aliases": [
+        "People's Republic of China"
+      ]
+    },
+    {
+      "id": "CO",
+      "name": "Colombia",
+      "lon": -73.1743,
+      "lat": 3.3731,
+      "neighbors": [
+        "BR",
+        "PE",
+        "EC",
+        "PA",
+        "VE"
+      ],
+      "aliases": [
+        "Republic of Colombia"
+      ]
+    },
+    {
+      "id": "CR",
+      "name": "Costa Rica",
+      "lon": -84.0779,
+      "lat": 10.0651,
+      "neighbors": [
+        "PA",
+        "NI"
+      ],
+      "aliases": [
+        "Republic of Costa Rica"
+      ]
+    },
+    {
+      "id": "CU",
+      "name": "Cuba",
+      "lon": -77.9759,
+      "lat": 21.334,
+      "neighbors": [],
+      "aliases": [
+        "Republic of Cuba"
+      ]
+    },
+    {
+      "id": "CV",
+      "name": "Cape Verde",
+      "lon": -24,
+      "lat": 16,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "CW",
+      "name": "Curaçao",
+      "lon": -68.99,
+      "lat": 12.17,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "CX",
+      "name": "Christmas Island",
+      "lon": 105.63,
+      "lat": -10.49,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "CY",
+      "name": "Cyprus",
+      "lon": 33.0842,
+      "lat": 34.9133,
+      "neighbors": [],
+      "aliases": [
+        "Northern Cyprus",
+        "N. Cyprus",
+        "Turkish Republic of Northern Cyprus",
+        "Republic of Cyprus"
+      ]
+    },
+    {
+      "id": "DJ",
+      "name": "Djibouti",
+      "lon": 42.4988,
+      "lat": 11.9763,
+      "neighbors": [
+        "ER",
+        "ET",
+        "SO"
+      ],
+      "aliases": [
+        "Republic of Djibouti"
+      ]
+    },
+    {
+      "id": "DM",
+      "name": "Dominica",
+      "lon": -61.37,
+      "lat": 15.41,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "DO",
+      "name": "Dominican Republic",
+      "lon": -70.654,
+      "lat": 19.1041,
+      "neighbors": [
+        "HT"
+      ],
+      "aliases": [
+        "Dominican Rep."
+      ]
+    },
+    {
+      "id": "EC",
+      "name": "Ecuador",
+      "lon": -78.1884,
+      "lat": -1.2591,
+      "neighbors": [
+        "PE",
+        "CO"
+      ],
+      "aliases": [
+        "Republic of Ecuador"
+      ]
+    },
+    {
+      "id": "EH",
+      "name": "Western Sahara",
+      "lon": -12.6303,
+      "lat": 23.9676,
+      "neighbors": [
+        "DZ",
+        "MR",
+        "MA"
+      ],
+      "aliases": [
+        "W. Sahara",
+        "Sahrawi Arab Democratic Republic"
+      ]
+    },
+    {
+      "id": "ER",
+      "name": "Eritrea",
+      "lon": 38.2856,
+      "lat": 15.7874,
+      "neighbors": [
+        "SD",
+        "DJ",
+        "ET"
+      ],
+      "aliases": [
+        "State of Eritrea"
+      ]
+    },
+    {
+      "id": "ET",
+      "name": "Ethiopia",
+      "lon": 39.0886,
+      "lat": 8.0328,
+      "neighbors": [
+        "SO",
+        "KE",
+        "SD",
+        "ER",
+        "SS",
+        "DJ"
+      ],
+      "aliases": [
+        "Federal Democratic Republic of Ethiopia"
+      ]
+    },
+    {
+      "id": "FJ",
+      "name": "Fiji",
+      "lon": 177.9754,
+      "lat": -17.8261,
+      "neighbors": [],
+      "aliases": [
+        "Republic of Fiji"
+      ]
+    },
+    {
+      "id": "FK",
+      "name": "Falkland Islands",
+      "lon": -58.7386,
+      "lat": -51.6089,
+      "neighbors": [],
+      "aliases": [
+        "Falkland Is.",
+        "Falkland Islands / Malvinas",
+        "Falkland Islands (Islas Malvinas)"
+      ]
+    },
+    {
+      "id": "FM",
+      "name": "Micronesia",
+      "lon": 158.2,
+      "lat": 6.9,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "FO",
+      "name": "Faroe Islands",
+      "lon": -6.9,
+      "lat": 62,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "GA",
+      "name": "Gabon",
+      "lon": 11.8359,
+      "lat": -0.4377,
+      "neighbors": [
+        "CM",
+        "CG",
+        "GQ"
+      ],
+      "aliases": [
+        "Gabonese Republic"
+      ]
+    },
+    {
+      "id": "GB",
+      "name": "United Kingdom",
+      "lon": -2.1163,
+      "lat": 54.4027,
+      "neighbors": [
+        "IE"
+      ],
+      "aliases": [
+        "United Kingdom of Great Britain and Northern Ireland"
+      ]
+    },
+    {
+      "id": "GD",
+      "name": "Grenada",
+      "lon": -61.68,
+      "lat": 12.12,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "GF",
+      "name": "French Guiana",
+      "lon": -53.1,
+      "lat": 3.9,
+      "neighbors": [
+        "BR",
+        "SR"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "GG",
+      "name": "Guernsey",
+      "lon": -2.58,
+      "lat": 49.46,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "GH",
+      "name": "Ghana",
+      "lon": -1.0369,
+      "lat": 7.7176,
+      "neighbors": [
+        "TG",
+        "CI",
+        "BF"
+      ],
+      "aliases": [
+        "Republic of Ghana"
+      ]
+    },
+    {
+      "id": "GI",
+      "name": "Gibraltar",
+      "lon": -5.35,
+      "lat": 36.14,
+      "neighbors": [
+        "ES"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "GL",
+      "name": "Greenland",
+      "lon": -39.3353,
+      "lat": 74.3194,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "GM",
+      "name": "Gambia",
+      "lon": -14.9983,
+      "lat": 13.6417,
+      "neighbors": [
+        "SN"
+      ],
+      "aliases": [
+        "The Gambia",
+        "Republic of the Gambia",
+        "Gambia, The"
+      ]
+    },
+    {
+      "id": "GN",
+      "name": "Guinea",
+      "lon": -10.0164,
+      "lat": 10.6185,
+      "neighbors": [
+        "SN",
+        "ML",
+        "CI",
+        "LR",
+        "SL",
+        "GW"
+      ],
+      "aliases": [
+        "Republic of Guinea"
+      ]
+    },
+    {
+      "id": "GP",
+      "name": "Guadeloupe",
+      "lon": -61.55,
+      "lat": 16.25,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "GQ",
+      "name": "Equatorial Guinea",
+      "lon": 8.9902,
+      "lat": 2.333,
+      "neighbors": [
+        "CM",
+        "GA"
+      ],
+      "aliases": [
+        "Eq. Guinea",
+        "Republic of Equatorial Guinea"
+      ]
+    },
+    {
+      "id": "GS",
+      "name": "South Georgia & South Sandwich Islands",
+      "lon": -36.6,
+      "lat": -54.4,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "GT",
+      "name": "Guatemala",
+      "lon": -90.4971,
+      "lat": 14.9821,
+      "neighbors": [
+        "MX",
+        "HN",
+        "SV",
+        "BZ"
+      ],
+      "aliases": [
+        "Republic of Guatemala"
+      ]
+    },
+    {
+      "id": "GU",
+      "name": "Guam",
+      "lon": 144.79,
+      "lat": 13.44,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "GW",
+      "name": "Guinea-Bissau",
+      "lon": -14.5241,
+      "lat": 12.1637,
+      "neighbors": [
+        "SN",
+        "GN"
+      ],
+      "aliases": [
+        "Republic of Guinea-Bissau"
+      ]
+    },
+    {
+      "id": "GY",
+      "name": "Guyana",
+      "lon": -58.9426,
+      "lat": 5.1243,
+      "neighbors": [
+        "BR",
+        "VE",
+        "SR"
+      ],
+      "aliases": [
+        "Co-operative Republic of Guyana"
+      ]
+    },
+    {
+      "id": "HK",
+      "name": "Hong Kong SAR China",
+      "lon": 114.17,
+      "lat": 22.32,
+      "neighbors": [
+        "CN"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "HM",
+      "name": "Heard & McDonald Islands",
+      "lon": 73.5,
+      "lat": -53.1,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "HN",
+      "name": "Honduras",
+      "lon": -86.8876,
+      "lat": 14.7948,
+      "neighbors": [
+        "NI",
+        "SV",
+        "GT"
+      ],
+      "aliases": [
+        "Republic of Honduras"
+      ]
+    },
+    {
+      "id": "HT",
+      "name": "Haiti",
+      "lon": -72.2241,
+      "lat": 19.2638,
+      "neighbors": [
+        "DO"
+      ],
+      "aliases": [
+        "Republic of Haiti"
+      ]
+    },
+    {
+      "id": "ID",
+      "name": "Indonesia",
+      "lon": 101.8929,
+      "lat": -0.9544,
+      "neighbors": [
+        "PG",
+        "TL",
+        "MY"
+      ],
+      "aliases": [
+        "Republic of Indonesia"
+      ]
+    },
+    {
+      "id": "IE",
+      "name": "Ireland",
+      "lon": -7.7986,
+      "lat": 53.0787,
+      "neighbors": [
+        "GB"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "IM",
+      "name": "Isle of Man",
+      "lon": -4.55,
+      "lat": 54.2,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "IN",
+      "name": "India",
+      "lon": 79.3581,
+      "lat": 22.6869,
+      "neighbors": [
+        "MM",
+        "BD",
+        "PK",
+        "CN",
+        "NP",
+        "BT"
+      ],
+      "aliases": [
+        "Republic of India"
+      ]
+    },
+    {
+      "id": "IO",
+      "name": "British Indian Ocean Territory",
+      "lon": 71.5,
+      "lat": -6,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "IS",
+      "name": "Iceland",
+      "lon": -18.6737,
+      "lat": 64.7793,
+      "neighbors": [],
+      "aliases": [
+        "Republic of Iceland"
+      ]
+    },
+    {
+      "id": "JE",
+      "name": "Jersey",
+      "lon": -2.13,
+      "lat": 49.2,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "JM",
+      "name": "Jamaica",
+      "lon": -77.3188,
+      "lat": 18.1371,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "JP",
+      "name": "Japan",
+      "lon": 138.4422,
+      "lat": 36.1425,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "KE",
+      "name": "Kenya",
+      "lon": 37.9076,
+      "lat": 0.549,
+      "neighbors": [
+        "TZ",
+        "SO",
+        "UG",
+        "SS",
+        "ET"
+      ],
+      "aliases": [
+        "Republic of Kenya"
+      ]
+    },
+    {
+      "id": "KG",
+      "name": "Kyrgyzstan",
+      "lon": 74.5326,
+      "lat": 41.6685,
+      "neighbors": [
+        "KZ",
+        "UZ",
+        "TJ",
+        "CN"
+      ],
+      "aliases": [
+        "Kyrgyz Republic"
+      ]
+    },
+    {
+      "id": "KH",
+      "name": "Cambodia",
+      "lon": 104.5049,
+      "lat": 12.6476,
+      "neighbors": [
+        "TH",
+        "LA",
+        "VN"
+      ],
+      "aliases": [
+        "Kingdom of Cambodia"
+      ]
+    },
+    {
+      "id": "KI",
+      "name": "Kiribati",
+      "lon": 172.97,
+      "lat": 1.45,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "KM",
+      "name": "Comoros",
+      "lon": 43.3,
+      "lat": -11.7,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "KN",
+      "name": "St. Kitts & Nevis",
+      "lon": -62.75,
+      "lat": 17.3,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "KP",
+      "name": "North Korea",
+      "lon": 126.4445,
+      "lat": 39.8853,
+      "neighbors": [
+        "RU",
+        "KR",
+        "CN"
+      ],
+      "aliases": [
+        "Dem. Rep. Korea",
+        "Democratic People's Republic of Korea",
+        "Korea, North"
+      ]
+    },
+    {
+      "id": "KR",
+      "name": "South Korea",
+      "lon": 128.1295,
+      "lat": 36.3849,
+      "neighbors": [
+        "KP"
+      ],
+      "aliases": [
+        "Republic of Korea",
+        "Korea, South"
+      ]
+    },
+    {
+      "id": "KY",
+      "name": "Cayman Islands",
+      "lon": -81.25,
+      "lat": 19.3,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "KZ",
+      "name": "Kazakhstan",
+      "lon": 68.6855,
+      "lat": 49.0541,
+      "neighbors": [
+        "CN",
+        "KG",
+        "UZ",
+        "TM",
+        "RU"
+      ],
+      "aliases": [
+        "Republic of Kazakhstan"
+      ]
+    },
+    {
+      "id": "LA",
+      "name": "Laos",
+      "lon": 102.5339,
+      "lat": 19.4318,
+      "neighbors": [
+        "KH",
+        "TH",
+        "MM",
+        "CN",
+        "VN"
+      ],
+      "aliases": [
+        "Lao PDR",
+        "Lao People's Democratic Republic"
+      ]
+    },
+    {
+      "id": "LC",
+      "name": "St. Lucia",
+      "lon": -60.98,
+      "lat": 13.91,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "LK",
+      "name": "Sri Lanka",
+      "lon": 80.7048,
+      "lat": 7.5811,
+      "neighbors": [],
+      "aliases": [
+        "Democratic Socialist Republic of Sri Lanka"
+      ]
+    },
+    {
+      "id": "LR",
+      "name": "Liberia",
+      "lon": -9.4604,
+      "lat": 6.4472,
+      "neighbors": [
+        "CI",
+        "GN",
+        "SL"
+      ],
+      "aliases": [
+        "Republic of Liberia"
+      ]
+    },
+    {
+      "id": "LS",
+      "name": "Lesotho",
+      "lon": 28.2466,
+      "lat": -29.4802,
+      "neighbors": [
+        "ZA"
+      ],
+      "aliases": [
+        "Kingdom of Lesotho"
+      ]
+    },
+    {
+      "id": "MF",
+      "name": "St. Martin",
+      "lon": -63.07,
+      "lat": 18.08,
+      "neighbors": [
+        "SX"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "MG",
+      "name": "Madagascar",
+      "lon": 46.7042,
+      "lat": -18.6283,
+      "neighbors": [],
+      "aliases": [
+        "Republic of Madagascar"
+      ]
+    },
+    {
+      "id": "MH",
+      "name": "Marshall Islands",
+      "lon": 171.18,
+      "lat": 7.13,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "ML",
+      "name": "Mali",
+      "lon": -2.0385,
+      "lat": 18.6927,
+      "neighbors": [
+        "SN",
+        "MR",
+        "DZ",
+        "NE",
+        "BF",
+        "CI",
+        "GN"
+      ],
+      "aliases": [
+        "Republic of Mali"
+      ]
+    },
+    {
+      "id": "MM",
+      "name": "Myanmar (Burma)",
+      "lon": 95.8045,
+      "lat": 21.5739,
+      "neighbors": [
+        "TH",
+        "LA",
+        "BD",
+        "IN",
+        "CN"
+      ],
+      "aliases": [
+        "Myanmar",
+        "Republic of the Union of Myanmar",
+        "Burma"
+      ]
+    },
+    {
+      "id": "MN",
+      "name": "Mongolia",
+      "lon": 104.1504,
+      "lat": 45.9975,
+      "neighbors": [
+        "RU",
+        "CN"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "MO",
+      "name": "Macao SAR China",
+      "lon": 113.54,
+      "lat": 22.2,
+      "neighbors": [
+        "CN"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "MP",
+      "name": "Northern Mariana Islands",
+      "lon": 145.75,
+      "lat": 15.2,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "MQ",
+      "name": "Martinique",
+      "lon": -61.02,
+      "lat": 14.64,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "MR",
+      "name": "Mauritania",
+      "lon": -9.7403,
+      "lat": 19.5871,
+      "neighbors": [
+        "EH",
+        "SN",
+        "ML",
         "DZ"
+      ],
+      "aliases": [
+        "Islamic Republic of Mauritania"
+      ]
+    },
+    {
+      "id": "MS",
+      "name": "Montserrat",
+      "lon": -62.2,
+      "lat": 16.75,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "MT",
+      "name": "Malta",
+      "lon": 14.4,
+      "lat": 35.9,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "MU",
+      "name": "Mauritius",
+      "lon": 57.55,
+      "lat": -20.28,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "MV",
+      "name": "Maldives",
+      "lon": 73.2,
+      "lat": 3.2,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "MW",
+      "name": "Malawi",
+      "lon": 33.6081,
+      "lat": -13.3867,
+      "neighbors": [
+        "TZ",
+        "ZM",
+        "MZ"
+      ],
+      "aliases": [
+        "Republic of Malawi"
+      ]
+    },
+    {
+      "id": "MX",
+      "name": "Mexico",
+      "lon": -102.2894,
+      "lat": 23.92,
+      "neighbors": [
+        "US",
+        "BZ",
+        "GT"
+      ],
+      "aliases": [
+        "United Mexican States"
+      ]
+    },
+    {
+      "id": "MY",
+      "name": "Malaysia",
+      "lon": 113.8371,
+      "lat": 2.5287,
+      "neighbors": [
+        "ID",
+        "TH",
+        "BN"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "MZ",
+      "name": "Mozambique",
+      "lon": 37.8379,
+      "lat": -13.9432,
+      "neighbors": [
+        "TZ",
+        "ZA",
+        "ZW",
+        "ZM",
+        "MW",
+        "SZ"
+      ],
+      "aliases": [
+        "Republic of Mozambique"
+      ]
+    },
+    {
+      "id": "NA",
+      "name": "Namibia",
+      "lon": 17.1082,
+      "lat": -20.5753,
+      "neighbors": [
+        "ZA",
+        "BW",
+        "AO",
+        "ZM"
+      ],
+      "aliases": [
+        "Republic of Namibia"
+      ]
+    },
+    {
+      "id": "NC",
+      "name": "New Caledonia",
+      "lon": 165.084,
+      "lat": -21.0647,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "NE",
+      "name": "Niger",
+      "lon": 9.5044,
+      "lat": 17.4462,
+      "neighbors": [
+        "TD",
+        "ML",
+        "BJ",
+        "CM",
+        "NG",
+        "BF",
+        "DZ",
+        "LY"
+      ],
+      "aliases": [
+        "Republic of Niger"
+      ]
+    },
+    {
+      "id": "NF",
+      "name": "Norfolk Island",
+      "lon": 167.95,
+      "lat": -29.04,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "NG",
+      "name": "Nigeria",
+      "lon": 7.5032,
+      "lat": 9.4398,
+      "neighbors": [
+        "BJ",
+        "NE",
+        "CM"
+      ],
+      "aliases": [
+        "Federal Republic of Nigeria"
+      ]
+    },
+    {
+      "id": "NI",
+      "name": "Nicaragua",
+      "lon": -85.0693,
+      "lat": 12.6707,
+      "neighbors": [
+        "CR",
+        "HN"
+      ],
+      "aliases": [
+        "Republic of Nicaragua"
+      ]
+    },
+    {
+      "id": "NP",
+      "name": "Nepal",
+      "lon": 83.6399,
+      "lat": 28.2979,
+      "neighbors": [
+        "IN",
+        "CN"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "NR",
+      "name": "Nauru",
+      "lon": 166.93,
+      "lat": -0.53,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "NU",
+      "name": "Niue",
+      "lon": -169.87,
+      "lat": -19.05,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "NZ",
+      "name": "New Zealand",
+      "lon": 172.787,
+      "lat": -39.759,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "OM",
+      "name": "Oman",
+      "lon": 57.3366,
+      "lat": 22.1204,
+      "neighbors": [
+        "AE",
+        "YE",
+        "SA"
+      ],
+      "aliases": [
+        "Sultanate of Oman"
+      ]
+    },
+    {
+      "id": "PA",
+      "name": "Panama",
+      "lon": -80.3521,
+      "lat": 8.722,
+      "neighbors": [
+        "CO",
+        "CR"
+      ],
+      "aliases": [
+        "Republic of Panama"
+      ]
+    },
+    {
+      "id": "PE",
+      "name": "Peru",
+      "lon": -72.9002,
+      "lat": -12.9767,
+      "neighbors": [
+        "CL",
+        "BR",
+        "BO",
+        "EC",
+        "CO"
+      ],
+      "aliases": [
+        "Republic of Peru"
+      ]
+    },
+    {
+      "id": "PF",
+      "name": "French Polynesia",
+      "lon": -149.56,
+      "lat": -17.68,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "PG",
+      "name": "Papua New Guinea",
+      "lon": 143.9102,
+      "lat": -5.6953,
+      "neighbors": [
+        "ID"
+      ],
+      "aliases": [
+        "Independent State of Papua New Guinea"
+      ]
+    },
+    {
+      "id": "PH",
+      "name": "Philippines",
+      "lon": 122.465,
+      "lat": 11.198,
+      "neighbors": [],
+      "aliases": [
+        "Republic of the Philippines"
+      ]
+    },
+    {
+      "id": "PK",
+      "name": "Pakistan",
+      "lon": 68.5456,
+      "lat": 29.3284,
+      "neighbors": [
+        "IN",
+        "IR",
+        "AF",
+        "CN"
+      ],
+      "aliases": [
+        "Islamic Republic of Pakistan"
+      ]
+    },
+    {
+      "id": "PM",
+      "name": "St. Pierre & Miquelon",
+      "lon": -56.33,
+      "lat": 46.78,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "PN",
+      "name": "Pitcairn Islands",
+      "lon": -128.3,
+      "lat": -24.37,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "PR",
+      "name": "Puerto Rico",
+      "lon": -66.4811,
+      "lat": 18.2347,
+      "neighbors": [],
+      "aliases": [
+        "Commonwealth of Puerto Rico"
+      ]
+    },
+    {
+      "id": "PS",
+      "name": "Palestine",
+      "lon": 35.2913,
+      "lat": 32.0474,
+      "neighbors": [
+        "IL",
+        "JO",
+        "EG"
+      ],
+      "aliases": [
+        "West Bank and Gaza"
+      ]
+    },
+    {
+      "id": "PW",
+      "name": "Palau",
+      "lon": 134.5,
+      "lat": 7.5,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "PY",
+      "name": "Paraguay",
+      "lon": -60.1464,
+      "lat": -21.6745,
+      "neighbors": [
+        "AR",
+        "BR",
+        "BO"
+      ],
+      "aliases": [
+        "Republic of Paraguay"
+      ]
+    },
+    {
+      "id": "QA",
+      "name": "Qatar",
+      "lon": 51.1435,
+      "lat": 25.2374,
+      "neighbors": [
+        "SA"
+      ],
+      "aliases": [
+        "State of Qatar"
+      ]
+    },
+    {
+      "id": "RE",
+      "name": "Réunion",
+      "lon": 55.53,
+      "lat": -21.12,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "RW",
+      "name": "Rwanda",
+      "lon": 30.1039,
+      "lat": -1.8972,
+      "neighbors": [
+        "TZ",
+        "CD",
+        "BI",
+        "UG"
+      ],
+      "aliases": [
+        "Republic of Rwanda"
+      ]
+    },
+    {
+      "id": "SB",
+      "name": "Solomon Islands",
+      "lon": 159.1705,
+      "lat": -8.0295,
+      "neighbors": [],
+      "aliases": [
+        "Solomon Is."
+      ]
+    },
+    {
+      "id": "SC",
+      "name": "Seychelles",
+      "lon": 55.45,
+      "lat": -4.62,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "SD",
+      "name": "Sudan",
+      "lon": 29.2607,
+      "lat": 16.3307,
+      "neighbors": [
+        "CF",
+        "TD",
+        "LY",
+        "EG",
+        "ER",
+        "ET",
+        "SS"
+      ],
+      "aliases": [
+        "Republic of the Sudan"
+      ]
+    },
+    {
+      "id": "SG",
+      "name": "Singapore",
+      "lon": 103.82,
+      "lat": 1.35,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "SH",
+      "name": "St. Helena",
+      "lon": -5.7,
+      "lat": -15.9,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "SJ",
+      "name": "Svalbard & Jan Mayen",
+      "lon": 18.1,
+      "lat": 78,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "SL",
+      "name": "Sierra Leone",
+      "lon": -11.7637,
+      "lat": 8.6174,
+      "neighbors": [
+        "GN",
+        "LR"
+      ],
+      "aliases": [
+        "Republic of Sierra Leone"
+      ]
+    },
+    {
+      "id": "SN",
+      "name": "Senegal",
+      "lon": -14.7786,
+      "lat": 15.1381,
+      "neighbors": [
+        "MR",
+        "ML",
+        "GN",
+        "GW",
+        "GM"
+      ],
+      "aliases": [
+        "Republic of Senegal"
+      ]
+    },
+    {
+      "id": "SO",
+      "name": "Somalia",
+      "lon": 45.1924,
+      "lat": 3.5689,
+      "neighbors": [
+        "KE",
+        "ET",
+        "DJ"
+      ],
+      "aliases": [
+        "Federal Republic of Somalia",
+        "Somaliland",
+        "Republic of Somaliland"
+      ]
+    },
+    {
+      "id": "SR",
+      "name": "Suriname",
+      "lon": -55.9109,
+      "lat": 4.144,
+      "neighbors": [
+        "BR",
+        "GY",
+        "GF"
+      ],
+      "aliases": [
+        "Republic of Suriname"
+      ]
+    },
+    {
+      "id": "SS",
+      "name": "South Sudan",
+      "lon": 30.3902,
+      "lat": 7.2305,
+      "neighbors": [
+        "CD",
+        "KE",
+        "SD",
+        "CF",
+        "ET",
+        "UG"
+      ],
+      "aliases": [
+        "S. Sudan",
+        "Republic of South Sudan"
+      ]
+    },
+    {
+      "id": "ST",
+      "name": "São Tomé & Príncipe",
+      "lon": 6.61,
+      "lat": 0.19,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "SV",
+      "name": "El Salvador",
+      "lon": -88.8901,
+      "lat": 13.6854,
+      "neighbors": [
+        "HN",
+        "GT"
+      ],
+      "aliases": [
+        "Republic of El Salvador"
+      ]
+    },
+    {
+      "id": "SX",
+      "name": "Sint Maarten",
+      "lon": -63.06,
+      "lat": 18.04,
+      "neighbors": [
+        "MF"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "SZ",
+      "name": "Eswatini",
+      "lon": 31.4673,
+      "lat": -26.5337,
+      "neighbors": [
+        "ZA",
+        "MZ"
+      ],
+      "aliases": [
+        "eSwatini",
+        "Kingdom of eSwatini"
+      ]
+    },
+    {
+      "id": "TC",
+      "name": "Turks & Caicos Islands",
+      "lon": -71.8,
+      "lat": 21.7,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "TD",
+      "name": "Chad",
+      "lon": 18.645,
+      "lat": 15.143,
+      "neighbors": [
+        "SD",
+        "CF",
+        "CM",
+        "NE",
+        "LY"
+      ],
+      "aliases": [
+        "Republic of Chad"
+      ]
+    },
+    {
+      "id": "TF",
+      "name": "French Southern Territories",
+      "lon": 69.1221,
+      "lat": -49.3037,
+      "neighbors": [],
+      "aliases": [
+        "French Southern and Antarctic Lands",
+        "Fr. S. Antarctic Lands",
+        "Territory of the French Southern and Antarctic Lands"
+      ]
+    },
+    {
+      "id": "TG",
+      "name": "Togo",
+      "lon": 1.0581,
+      "lat": 8.8072,
+      "neighbors": [
+        "BJ",
+        "GH",
+        "BF"
+      ],
+      "aliases": [
+        "Togolese Republic"
+      ]
+    },
+    {
+      "id": "TH",
+      "name": "Thailand",
+      "lon": 101.0732,
+      "lat": 15.4597,
+      "neighbors": [
+        "KH",
+        "MY",
+        "MM",
+        "LA"
+      ],
+      "aliases": [
+        "Kingdom of Thailand"
+      ]
+    },
+    {
+      "id": "TJ",
+      "name": "Tajikistan",
+      "lon": 72.5873,
+      "lat": 38.1998,
+      "neighbors": [
+        "UZ",
+        "AF",
+        "KG",
+        "CN"
+      ],
+      "aliases": [
+        "Republic of Tajikistan"
+      ]
+    },
+    {
+      "id": "TK",
+      "name": "Tokelau",
+      "lon": -171.8,
+      "lat": -9.2,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "TL",
+      "name": "Timor-Leste",
+      "lon": 125.8547,
+      "lat": -8.8037,
+      "neighbors": [
+        "ID"
+      ],
+      "aliases": [
+        "East Timor",
+        "Democratic Republic of Timor-Leste"
+      ]
+    },
+    {
+      "id": "TM",
+      "name": "Turkmenistan",
+      "lon": 58.6766,
+      "lat": 39.8552,
+      "neighbors": [
+        "KZ",
+        "UZ",
+        "AF",
+        "IR"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "TO",
+      "name": "Tonga",
+      "lon": -175.2,
+      "lat": -21.2,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "TT",
+      "name": "Trinidad & Tobago",
+      "lon": -60.9184,
+      "lat": 10.9989,
+      "neighbors": [],
+      "aliases": [
+        "Trinidad and Tobago",
+        "Republic of Trinidad and Tobago"
+      ]
+    },
+    {
+      "id": "TV",
+      "name": "Tuvalu",
+      "lon": 179.2,
+      "lat": -8.5,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "TW",
+      "name": "Taiwan",
+      "lon": 120.8682,
+      "lat": 23.6524,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "TZ",
+      "name": "Tanzania",
+      "lon": 34.9592,
+      "lat": -6.0519,
+      "neighbors": [
+        "KE",
+        "MZ",
+        "MW",
+        "ZM",
+        "CD",
+        "BI",
+        "RW",
+        "UG"
+      ],
+      "aliases": [
+        "United Republic of Tanzania"
+      ]
+    },
+    {
+      "id": "UG",
+      "name": "Uganda",
+      "lon": 32.9486,
+      "lat": 1.9726,
+      "neighbors": [
+        "TZ",
+        "CD",
+        "KE",
+        "RW",
+        "SS"
+      ],
+      "aliases": [
+        "Republic of Uganda"
+      ]
+    },
+    {
+      "id": "UM",
+      "name": "U.S. Outlying Islands",
+      "lon": -177.4,
+      "lat": 28.2,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "US",
+      "name": "United States",
+      "lon": -97.4826,
+      "lat": 39.5385,
+      "neighbors": [
+        "CA",
+        "MX"
+      ],
+      "aliases": [
+        "United States of America"
+      ]
+    },
+    {
+      "id": "UY",
+      "name": "Uruguay",
+      "lon": -55.9669,
+      "lat": -32.9611,
+      "neighbors": [
+        "AR",
+        "BR"
+      ],
+      "aliases": [
+        "Oriental Republic of Uruguay"
+      ]
+    },
+    {
+      "id": "UZ",
+      "name": "Uzbekistan",
+      "lon": 64.0054,
+      "lat": 41.6936,
+      "neighbors": [
+        "KZ",
+        "KG",
+        "TJ",
+        "AF",
+        "TM"
+      ],
+      "aliases": [
+        "Republic of Uzbekistan"
+      ]
+    },
+    {
+      "id": "VC",
+      "name": "St. Vincent & Grenadines",
+      "lon": -61.2,
+      "lat": 13.25,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "VE",
+      "name": "Venezuela",
+      "lon": -64.5994,
+      "lat": 7.1825,
+      "neighbors": [
+        "BR",
+        "CO",
+        "GY"
+      ],
+      "aliases": [
+        "Bolivarian Republic of Venezuela"
+      ]
+    },
+    {
+      "id": "VG",
+      "name": "British Virgin Islands",
+      "lon": -64.6,
+      "lat": 18.4,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "VI",
+      "name": "U.S. Virgin Islands",
+      "lon": -64.8,
+      "lat": 18.3,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "VN",
+      "name": "Vietnam",
+      "lon": 105.3873,
+      "lat": 21.7154,
+      "neighbors": [
+        "KH",
+        "LA",
+        "CN"
+      ],
+      "aliases": [
+        "Socialist Republic of Vietnam"
+      ]
+    },
+    {
+      "id": "VU",
+      "name": "Vanuatu",
+      "lon": 166.9088,
+      "lat": -15.3715,
+      "neighbors": [],
+      "aliases": [
+        "Republic of Vanuatu"
+      ]
+    },
+    {
+      "id": "WF",
+      "name": "Wallis & Futuna",
+      "lon": -176.2,
+      "lat": -13.3,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "WS",
+      "name": "Samoa",
+      "lon": -172.1,
+      "lat": -13.8,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "YE",
+      "name": "Yemen",
+      "lon": 45.8744,
+      "lat": 15.3282,
+      "neighbors": [
+        "OM",
+        "SA"
+      ],
+      "aliases": [
+        "Republic of Yemen"
+      ]
+    },
+    {
+      "id": "YT",
+      "name": "Mayotte",
+      "lon": 45.15,
+      "lat": -12.82,
+      "neighbors": [],
+      "aliases": []
+    },
+    {
+      "id": "ZA",
+      "name": "South Africa",
+      "lon": 23.6657,
+      "lat": -29.7088,
+      "neighbors": [
+        "NA",
+        "BW",
+        "ZW",
+        "MZ",
+        "SZ",
+        "LS"
+      ],
+      "aliases": [
+        "Republic of South Africa"
+      ]
+    },
+    {
+      "id": "ZM",
+      "name": "Zambia",
+      "lon": 26.3953,
+      "lat": -14.6608,
+      "neighbors": [
+        "TZ",
+        "CD",
+        "ZW",
+        "BW",
+        "NA",
+        "MW",
+        "MZ",
+        "AO"
+      ],
+      "aliases": [
+        "Republic of Zambia"
+      ]
+    },
+    {
+      "id": "ZW",
+      "name": "Zimbabwe",
+      "lon": 29.9254,
+      "lat": -18.9116,
+      "neighbors": [
+        "ZA",
+        "BW",
+        "ZM",
+        "MZ"
+      ],
+      "aliases": [
+        "Republic of Zimbabwe"
       ]
     }
   ]

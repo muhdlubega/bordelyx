@@ -1,0 +1,702 @@
+[
+  {
+    "id": "PT",
+    "name": "Portugal",
+    "lon": -8,
+    "lat": 39.5,
+    "neighbors": [
+      "ES"
+    ]
+  },
+  {
+    "id": "ES",
+    "name": "Spain",
+    "lon": -3.7,
+    "lat": 40.4,
+    "neighbors": [
+      "PT",
+      "FR",
+      "AD"
+    ]
+  },
+  {
+    "id": "AD",
+    "name": "Andorra",
+    "lon": 1.5,
+    "lat": 42.5,
+    "neighbors": [
+      "ES",
+      "FR"
+    ]
+  },
+  {
+    "id": "FR",
+    "name": "France",
+    "lon": 2.4,
+    "lat": 46.6,
+    "neighbors": [
+      "ES",
+      "AD",
+      "BE",
+      "LU",
+      "DE",
+      "CH",
+      "IT",
+      "MC"
+    ]
+  },
+  {
+    "id": "MC",
+    "name": "Monaco",
+    "lon": 7.42,
+    "lat": 43.74,
+    "neighbors": [
+      "FR"
+    ]
+  },
+  {
+    "id": "BE",
+    "name": "Belgium",
+    "lon": 4.7,
+    "lat": 50.6,
+    "neighbors": [
+      "FR",
+      "NL",
+      "DE",
+      "LU"
+    ]
+  },
+  {
+    "id": "NL",
+    "name": "Netherlands",
+    "lon": 5.4,
+    "lat": 52.2,
+    "neighbors": [
+      "BE",
+      "DE"
+    ]
+  },
+  {
+    "id": "LU",
+    "name": "Luxembourg",
+    "lon": 6.1,
+    "lat": 49.8,
+    "neighbors": [
+      "BE",
+      "FR",
+      "DE"
+    ]
+  },
+  {
+    "id": "DE",
+    "name": "Germany",
+    "lon": 10.4,
+    "lat": 51.1,
+    "neighbors": [
+      "FR",
+      "BE",
+      "NL",
+      "LU",
+      "CH",
+      "AT",
+      "CZ",
+      "PL",
+      "DK"
+    ]
+  },
+  {
+    "id": "DK",
+    "name": "Denmark",
+    "lon": 9.5,
+    "lat": 56.2,
+    "neighbors": [
+      "DE"
+    ]
+  },
+  {
+    "id": "CH",
+    "name": "Switzerland",
+    "lon": 8.2,
+    "lat": 46.8,
+    "neighbors": [
+      "FR",
+      "DE",
+      "AT",
+      "LI",
+      "IT"
+    ]
+  },
+  {
+    "id": "LI",
+    "name": "Liechtenstein",
+    "lon": 9.55,
+    "lat": 47.16,
+    "neighbors": [
+      "CH",
+      "AT"
+    ]
+  },
+  {
+    "id": "AT",
+    "name": "Austria",
+    "lon": 14.1,
+    "lat": 47.6,
+    "neighbors": [
+      "DE",
+      "CH",
+      "LI",
+      "IT",
+      "SI",
+      "HU",
+      "SK",
+      "CZ"
+    ]
+  },
+  {
+    "id": "IT",
+    "name": "Italy",
+    "lon": 12.6,
+    "lat": 42.8,
+    "neighbors": [
+      "FR",
+      "CH",
+      "AT",
+      "SI",
+      "SM",
+      "VA"
+    ]
+  },
+  {
+    "id": "SM",
+    "name": "San Marino",
+    "lon": 12.46,
+    "lat": 43.94,
+    "neighbors": [
+      "IT"
+    ]
+  },
+  {
+    "id": "VA",
+    "name": "Vatican City",
+    "lon": 12.45,
+    "lat": 41.9,
+    "neighbors": [
+      "IT"
+    ]
+  },
+  {
+    "id": "CZ",
+    "name": "Czechia",
+    "lon": 15.5,
+    "lat": 49.8,
+    "neighbors": [
+      "DE",
+      "AT",
+      "SK",
+      "PL"
+    ]
+  },
+  {
+    "id": "PL",
+    "name": "Poland",
+    "lon": 19.1,
+    "lat": 52.1,
+    "neighbors": [
+      "DE",
+      "CZ",
+      "SK",
+      "UA",
+      "BY",
+      "LT",
+      "RU"
+    ]
+  },
+  {
+    "id": "SK",
+    "name": "Slovakia",
+    "lon": 19.7,
+    "lat": 48.7,
+    "neighbors": [
+      "CZ",
+      "PL",
+      "UA",
+      "HU",
+      "AT"
+    ]
+  },
+  {
+    "id": "HU",
+    "name": "Hungary",
+    "lon": 19.4,
+    "lat": 47.2,
+    "neighbors": [
+      "AT",
+      "SK",
+      "UA",
+      "RO",
+      "RS",
+      "HR",
+      "SI"
+    ]
+  },
+  {
+    "id": "SI",
+    "name": "Slovenia",
+    "lon": 14.9,
+    "lat": 46.1,
+    "neighbors": [
+      "IT",
+      "AT",
+      "HU",
+      "HR"
+    ]
+  },
+  {
+    "id": "HR",
+    "name": "Croatia",
+    "lon": 16.4,
+    "lat": 45.2,
+    "neighbors": [
+      "SI",
+      "HU",
+      "RS",
+      "BA",
+      "ME"
+    ]
+  },
+  {
+    "id": "BA",
+    "name": "Bosnia and Herzegovina",
+    "lon": 17.7,
+    "lat": 44.2,
+    "neighbors": [
+      "HR",
+      "RS",
+      "ME"
+    ]
+  },
+  {
+    "id": "ME",
+    "name": "Montenegro",
+    "lon": 19.2,
+    "lat": 42.7,
+    "neighbors": [
+      "HR",
+      "BA",
+      "RS",
+      "XK",
+      "AL"
+    ]
+  },
+  {
+    "id": "RS",
+    "name": "Serbia",
+    "lon": 20.8,
+    "lat": 44,
+    "neighbors": [
+      "HU",
+      "RO",
+      "BG",
+      "MK",
+      "XK",
+      "ME",
+      "BA",
+      "HR"
+    ]
+  },
+  {
+    "id": "XK",
+    "name": "Kosovo",
+    "lon": 20.9,
+    "lat": 42.6,
+    "neighbors": [
+      "RS",
+      "ME",
+      "AL",
+      "MK"
+    ]
+  },
+  {
+    "id": "AL",
+    "name": "Albania",
+    "lon": 20,
+    "lat": 41.2,
+    "neighbors": [
+      "ME",
+      "XK",
+      "MK",
+      "GR"
+    ]
+  },
+  {
+    "id": "MK",
+    "name": "North Macedonia",
+    "lon": 21.7,
+    "lat": 41.6,
+    "neighbors": [
+      "XK",
+      "RS",
+      "BG",
+      "GR",
+      "AL"
+    ]
+  },
+  {
+    "id": "GR",
+    "name": "Greece",
+    "lon": 22.8,
+    "lat": 39.2,
+    "neighbors": [
+      "AL",
+      "MK",
+      "BG",
+      "TR"
+    ]
+  },
+  {
+    "id": "BG",
+    "name": "Bulgaria",
+    "lon": 25.4,
+    "lat": 42.7,
+    "neighbors": [
+      "RO",
+      "RS",
+      "MK",
+      "GR",
+      "TR"
+    ]
+  },
+  {
+    "id": "RO",
+    "name": "Romania",
+    "lon": 24.9,
+    "lat": 45.9,
+    "neighbors": [
+      "HU",
+      "RS",
+      "BG",
+      "UA",
+      "MD"
+    ]
+  },
+  {
+    "id": "MD",
+    "name": "Moldova",
+    "lon": 28.5,
+    "lat": 47.2,
+    "neighbors": [
+      "RO",
+      "UA"
+    ]
+  },
+  {
+    "id": "UA",
+    "name": "Ukraine",
+    "lon": 31.2,
+    "lat": 49,
+    "neighbors": [
+      "PL",
+      "SK",
+      "HU",
+      "RO",
+      "MD",
+      "BY",
+      "RU"
+    ]
+  },
+  {
+    "id": "BY",
+    "name": "Belarus",
+    "lon": 28,
+    "lat": 53.5,
+    "neighbors": [
+      "PL",
+      "LT",
+      "LV",
+      "RU",
+      "UA"
+    ]
+  },
+  {
+    "id": "LT",
+    "name": "Lithuania",
+    "lon": 23.9,
+    "lat": 55.2,
+    "neighbors": [
+      "PL",
+      "RU",
+      "BY",
+      "LV"
+    ]
+  },
+  {
+    "id": "LV",
+    "name": "Latvia",
+    "lon": 24.9,
+    "lat": 56.9,
+    "neighbors": [
+      "LT",
+      "BY",
+      "RU",
+      "EE"
+    ]
+  },
+  {
+    "id": "EE",
+    "name": "Estonia",
+    "lon": 25.5,
+    "lat": 58.7,
+    "neighbors": [
+      "LV",
+      "RU"
+    ]
+  },
+  {
+    "id": "RU",
+    "name": "Russia",
+    "lon": 40,
+    "lat": 58,
+    "neighbors": [
+      "NO",
+      "FI",
+      "EE",
+      "LV",
+      "BY",
+      "UA",
+      "GE",
+      "AZ",
+      "LT",
+      "PL"
+    ]
+  },
+  {
+    "id": "FI",
+    "name": "Finland",
+    "lon": 25.8,
+    "lat": 64,
+    "neighbors": [
+      "SE",
+      "NO",
+      "RU"
+    ]
+  },
+  {
+    "id": "SE",
+    "name": "Sweden",
+    "lon": 15.5,
+    "lat": 62,
+    "neighbors": [
+      "NO",
+      "FI"
+    ]
+  },
+  {
+    "id": "NO",
+    "name": "Norway",
+    "lon": 10,
+    "lat": 62,
+    "neighbors": [
+      "SE",
+      "FI",
+      "RU"
+    ]
+  },
+  {
+    "id": "TR",
+    "name": "Türkiye",
+    "lon": 35.2,
+    "lat": 39,
+    "neighbors": [
+      "GR",
+      "BG",
+      "GE",
+      "AM",
+      "AZ",
+      "IR",
+      "IQ",
+      "SY"
+    ]
+  },
+  {
+    "id": "GE",
+    "name": "Georgia",
+    "lon": 43.5,
+    "lat": 42.1,
+    "neighbors": [
+      "RU",
+      "AZ",
+      "AM",
+      "TR"
+    ]
+  },
+  {
+    "id": "AM",
+    "name": "Armenia",
+    "lon": 44.9,
+    "lat": 40.1,
+    "neighbors": [
+      "GE",
+      "AZ",
+      "IR",
+      "TR"
+    ]
+  },
+  {
+    "id": "AZ",
+    "name": "Azerbaijan",
+    "lon": 47.7,
+    "lat": 40.4,
+    "neighbors": [
+      "RU",
+      "GE",
+      "AM",
+      "IR",
+      "TR"
+    ]
+  },
+  {
+    "id": "IR",
+    "name": "Iran",
+    "lon": 53.7,
+    "lat": 32.4,
+    "neighbors": [
+      "TR",
+      "AM",
+      "AZ",
+      "IQ"
+    ]
+  },
+  {
+    "id": "IQ",
+    "name": "Iraq",
+    "lon": 43.7,
+    "lat": 33.2,
+    "neighbors": [
+      "TR",
+      "IR",
+      "SY",
+      "JO",
+      "SA",
+      "KW"
+    ]
+  },
+  {
+    "id": "SY",
+    "name": "Syria",
+    "lon": 38.5,
+    "lat": 35,
+    "neighbors": [
+      "TR",
+      "IQ",
+      "JO",
+      "IL",
+      "LB"
+    ]
+  },
+  {
+    "id": "LB",
+    "name": "Lebanon",
+    "lon": 35.9,
+    "lat": 33.9,
+    "neighbors": [
+      "SY",
+      "IL"
+    ]
+  },
+  {
+    "id": "IL",
+    "name": "Israel",
+    "lon": 34.9,
+    "lat": 31.4,
+    "neighbors": [
+      "LB",
+      "SY",
+      "JO",
+      "EG"
+    ]
+  },
+  {
+    "id": "JO",
+    "name": "Jordan",
+    "lon": 36.2,
+    "lat": 31.2,
+    "neighbors": [
+      "SY",
+      "IQ",
+      "SA",
+      "IL"
+    ]
+  },
+  {
+    "id": "SA",
+    "name": "Saudi Arabia",
+    "lon": 45,
+    "lat": 24,
+    "neighbors": [
+      "JO",
+      "IQ",
+      "KW"
+    ]
+  },
+  {
+    "id": "KW",
+    "name": "Kuwait",
+    "lon": 47.5,
+    "lat": 29.3,
+    "neighbors": [
+      "IQ",
+      "SA"
+    ]
+  },
+  {
+    "id": "EG",
+    "name": "Egypt",
+    "lon": 29.9,
+    "lat": 26.8,
+    "neighbors": [
+      "IL",
+      "LY"
+    ]
+  },
+  {
+    "id": "LY",
+    "name": "Libya",
+    "lon": 17.2,
+    "lat": 27,
+    "neighbors": [
+      "EG",
+      "TN",
+      "DZ"
+    ]
+  },
+  {
+    "id": "TN",
+    "name": "Tunisia",
+    "lon": 9.5,
+    "lat": 34,
+    "neighbors": [
+      "LY",
+      "DZ"
+    ]
+  },
+  {
+    "id": "DZ",
+    "name": "Algeria",
+    "lon": 2.6,
+    "lat": 28,
+    "neighbors": [
+      "TN",
+      "LY",
+      "MA"
+    ]
+  },
+  {
+    "id": "MA",
+    "name": "Morocco",
+    "lon": -6.4,
+    "lat": 32,
+    "neighbors": [
+      "DZ"
+    ]
+  }
+]
