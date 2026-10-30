@@ -17,7 +17,7 @@ export default function LegalPage({ title, summary, children }: Props) {
       </header>
       <main className="legal-page">
         <header className="legal-header">
-          <span className="eyebrow">BORDELYX</span>
+          <span className="eyebrow">Bordelyx</span>
           <h1>{title}</h1>
           <p>{summary}</p>
           <span className="legal-updated">Last updated: 30 October 2026</span>

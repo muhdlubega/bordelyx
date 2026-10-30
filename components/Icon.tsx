@@ -23,6 +23,14 @@ export function Icon({ name, size = 24 }: {
         close: <path d="m5 5 14 14M5 19 19 5"/>,
         sound: <><path d="M4 9h4l6-5v16l-6-5H4ZM18 7q6 5 0 10"/></>,
         clock: <><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></>,
+        external: <path d="M7 17 17 7M8 7h9v9"/>,
+        sparkle: <path d="M12 3v5m0 8v5M3 12h5m8 0h5m-13-6 2 4 4 2-4 2-2 4-2-4-4-2 4-2Z" strokeWidth="1.5"/>,
+        plus: <path d="M12 5v14M5 12h14"/>,
+        check: <path d="m5 12 5 5 9-10"/>,
+        copy: <><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></>,
+        replay: <path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/>,
+        diamond: <path d="m12 3 8 9-8 9-8-9Z"/>,
+        down: <path d="M12 4v16m-6-6 6 6 6-6"/>,
         star: <path d="m12 2 3 6 7 1-5 5 1 8-6-4-6 4 1-8-5-5 7-1Z"/>,
     };
     return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[name] || paths.globe}</svg>;
