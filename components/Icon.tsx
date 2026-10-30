@@ -9,6 +9,7 @@ export function Icon({ name, size = 24 }: {
         rush: <><path d="m14 2-9 12h7l-2 8 10-12h-7Z"/></>,
         chain: <><path d="m9 15 6-6M8 17l-2 2a4 4 0 0 1-5-5l5-5a4 4 0 0 1 5 0M16 7l2-2a4 4 0 0 1 5 5l-5 5a4 4 0 0 1-5 0"/></>,
         escape: <><path d="M13 3h7v18h-7M3 12h13m-5-5 5 5-5 5"/></>,
+        ghost: <><circle cx="5" cy="17" r="3"/><circle cx="19" cy="6" r="3"/><path d="M8 17h3m2-3 2-3m1-3 1-1" strokeDasharray="1 2"/></>,
         pinpoint: <><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 1v4m0 14v4M1 12h4m14 0h4"/></>,
         dash: <><path d="m10 3-5 10h7l-2 8 10-12h-8l4-6M1 8h4M1 17h4"/></>,
         shield: <><path d="m12 2 8 4v6q0 7-8 10-8-3-8-10V6Z"/><path d="m8 12 3 3 5-6"/></>,

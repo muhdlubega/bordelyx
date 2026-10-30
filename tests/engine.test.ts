@@ -164,3 +164,17 @@ test('heist rejects incompatible one-way restriction without mutating caller set
     assert.deepEqual(r.modifiers, ['limited']);
     assert.deepEqual(modifiers, ['oneWay', 'limited']);
 });
+
+test('ghost routes are deterministic, solvable and keep endpoint-only restrictions', () => {
+    for (let seed = 0; seed < 30; seed++) {
+        let run = initialRun('ghost', `ghost-${seed}`, ['blind', 'fog', 'noLabels', 'limited']);
+        assert.deepEqual(run, initialRun('ghost', `ghost-${seed}`, ['blind', 'fog', 'noLabels', 'limited']));
+        assert.deepEqual(run.modifiers, ['limited']);
+        assert.equal(run.abilities.pulse, 0);
+        assert.equal(run.abilities.scout, 0);
+        assert.deepEqual(useAbility(run, 'pulse'), run);
+        assert.deepEqual(useAbility(run, 'scout'), run);
+        for (const id of shortestPath(run.start, run.target, run.blocked).slice(1)) run = move(run, id);
+        assert.equal(run.status, 'won');
+    }
+});

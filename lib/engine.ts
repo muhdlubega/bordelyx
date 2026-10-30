@@ -1,5 +1,5 @@
 import { countries, countryById, shortestPath, distanceKm } from './geography';
-export type Mode = 'royale' | 'heist' | 'rush' | 'chain' | 'escape' | 'pinpoint';
+export type Mode = 'royale' | 'heist' | 'rush' | 'chain' | 'escape' | 'pinpoint' | 'ghost';
 export type Modifier = 'blind' | 'noLabels' | 'timeRush' | 'hardcore' | 'fog' | 'limited' | 'oneWay' | 'chaos';
 export type Ability = 'dash' | 'shield' | 'scout' | 'reroute' | 'pulse';
 export interface Run {
@@ -44,6 +44,8 @@ export function initialRun(mode: Mode, seed: string, modifiers: Modifier[] = [],
     // Intel detours may require revisits; do not enable an incompatible restriction.
     if (mode === 'heist')
         modifiers = modifiers.filter(modifier => modifier !== 'oneWay');
+    if (mode === 'ghost')
+        modifiers = modifiers.filter(modifier => !['blind', 'fog', 'noLabels'].includes(modifier));
     const rand = random(seed + mode), pool = mode === 'royale' || mode === 'escape' ? pairs.slice(0, 10) : pairs, pair = pool[Math.floor(rand() * pool.length)], start = pair[0], target = pair[1];
     const path = shortestPath(start, target), checkpoints: string[] = [];
     const protectedPaths = [path];
@@ -77,8 +79,8 @@ export function initialRun(mode: Mode, seed: string, modifiers: Modifier[] = [],
     }
     return { mode, seed, endless: mode === 'chain' && endless, modifiers: [...new Set(modifiers)], start, current: start, target, checkpoints, collected: [], route: [start], blocked,
         danger: mode === 'royale' || mode === 'escape' ? [dangerOrigin] : [], dangerOrigin, turn: 0, maxMoves: mode === 'chain' ? (endless ? countries.length : 20) : optimalMoves + (modifiers.includes('limited') ? 2 : 7),
-        timeLeft: modifiers.includes('timeRush') ? 75 : 180, score: 0, status: 'playing', message: mode === 'pinpoint' ? `Find ${countryById[target].name} on the map.` : mode === 'chain' ? (endless ? 'Keep the chain alive. Visit new countries until you are trapped.' : 'Build a chain of 12 unique bordering countries.') : mode === 'heist' ? 'Collect both intel caches, then reach extraction.' : 'Plot your route. Every border is a decision.',
-        abilities: { dash: 1, shield: 1, scout: 1, reroute: 1, pulse: 2 }, effects: { dash: false, shield: false, scout: false, pulse: false }, history: [], invalidMoves: 0, abilitiesUsed: 0, optimalMoves };
+        timeLeft: modifiers.includes('timeRush') ? 75 : 180, score: 0, status: 'playing', message: mode === 'ghost' ? 'Only your start and extraction are visible. Type each bordering country to find your way.' : mode === 'pinpoint' ? `Find ${countryById[target].name} on the map.` : mode === 'chain' ? (endless ? 'Keep the chain alive. Visit new countries until you are trapped.' : 'Build a chain of 12 unique bordering countries.') : mode === 'heist' ? 'Collect both intel caches, then reach extraction.' : 'Plot your route. Every border is a decision.',
+        abilities: { dash: 1, shield: 1, scout: mode === 'ghost' ? 0 : 1, reroute: 1, pulse: mode === 'ghost' ? 0 : 2 }, effects: { dash: false, shield: false, scout: false, pulse: false }, history: [], invalidMoves: 0, abilitiesUsed: 0, optimalMoves };
 }
 function snapshot(r: Run): Run { return { ...r, history: [] }; }
 function copy(r: Run): Run { return { ...r, route: [...r.route], danger: [...r.danger], blocked: [...r.blocked], collected: [...r.collected], abilities: { ...r.abilities }, effects: { ...r.effects }, history: [...r.history] }; }
@@ -114,7 +116,7 @@ export function move(run: Run, countryId: string): Run {
         return run;
     const r = copy(run), id = countryId.toUpperCase();
     if (!countryById[id])
-        return { ...r, message: 'Choose a country from the map or search.' };
+        return { ...r, message: r.mode === 'pinpoint' ? 'Choose a country on the map.' : 'Type a country name to cross a border.' };
     if (r.mode === 'pinpoint') {
         const km = distanceKm(id, r.target);
         r.route = [id];

@@ -4,6 +4,7 @@ import mapboxgl, { type ExpressionSpecification, type GeoJSONSource, type Map as
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { countryById } from '@/lib/geography';
 import { validMoves, type Run } from '@/lib/engine';
+import { getMapPolicy } from '@/lib/map-policy';
 export interface MapboxAtlasProps {
     run?: Run;
     onSelect?: (id: string) => void;
@@ -12,16 +13,17 @@ export interface MapboxAtlasProps {
 const idExpression: ExpressionSpecification = ['coalesce', ['get', 'ISO_A2_EH'], ['get', 'ISO_A2']];
 function fillExpression(run?: Run): ExpressionSpecification {
     const match: unknown[] = ['match', idExpression];
+    const policy = getMapPolicy(run);
     for (const country of Object.values(countryById)) {
         const id = country.id;
-        const fill = run?.danger.includes(id) ? '#743b3c' : run?.blocked.includes(id) ? '#252d36' : run?.current === id ? '#b4efb4' : run?.target === id && run.mode !== 'pinpoint' ? '#50958b' : run?.checkpoints.includes(id) ? run.collected.includes(id) ? '#487e66' : '#826342' : run?.route.includes(id) ? '#3f6b59' : run && validMoves(run).includes(id) ? '#31594f' : '#233c3e';
+        const fill = policy.showHazards && run?.danger.includes(id) ? '#743b3c' : policy.showHazards && run?.blocked.includes(id) ? '#252d36' : policy.showCurrentPosition && run?.current === id ? '#b4efb4' : run?.target === id && run.mode !== 'pinpoint' ? '#50958b' : policy.showCheckpoints && run?.checkpoints.includes(id) ? run.collected.includes(id) ? '#487e66' : '#826342' : policy.showRoute && run?.route.includes(id) ? '#3f6b59' : policy.showNeighborHints && run && validMoves(run).includes(id) ? '#31594f' : '#233c3e';
         match.push(id, fill);
     }
     match.push('#142e34');
     return match as ExpressionSpecification;
 }
 function routeData(run?: Run) {
-    const coordinates = (run?.route ?? []).map(id => countryById[id]).filter(Boolean).map(c => [c.lon, c.lat]);
+    const coordinates = (getMapPolicy(run).showRoute ? run?.route ?? [] : []).map(id => countryById[id]).filter(Boolean).map(c => [c.lon, c.lat]);
     return { type: 'FeatureCollection' as const, features: coordinates.length > 1 ? [{ type: 'Feature' as const, properties: {}, geometry: { type: 'LineString' as const, coordinates } }] : [] };
 }
 /** Optional renderer. All terrain and route data remain local; the game engine never depends on Mapbox. */
@@ -40,7 +42,8 @@ export default function MapboxAtlas({ run, onSelect, onError }: MapboxAtlasProps
         markers.current = [];
         if (!r)
             return;
-        for (const [id, kind] of [[r.current, 'current'], ...(r.mode === 'pinpoint' ? [] : [[r.target, 'target']]), ...r.checkpoints.filter(id => !r.collected.includes(id)).map(id => [id, 'intel'])]) {
+        const policy = getMapPolicy(r);
+        for (const [id, kind] of [...(policy.showCurrentPosition ? [[r.current, 'current']] : []), ...(r.mode === 'pinpoint' ? [] : [[r.target, 'target']]), ...(policy.showCheckpoints ? r.checkpoints.filter(id => !r.collected.includes(id)).map(id => [id, 'intel']) : [])]) {
             const country = countryById[id];
             if (!country)
                 continue;
@@ -80,10 +83,10 @@ export default function MapboxAtlas({ run, onSelect, onError }: MapboxAtlasProps
                     properties?: Record<string, string>;
                 } | undefined)?.properties;
                 const id = properties?.ISO_A2_EH || properties?.ISO_A2;
-                if (id && countryById[id])
+                if (getMapPolicy(latest.current.run).allowCountrySelection && id && countryById[id])
                     latest.current.onSelect?.(id);
             });
-            atlas.on('mouseenter', 'countries', () => { atlas.getCanvas().style.cursor = 'pointer'; });
+            atlas.on('mouseenter', 'countries', () => { atlas.getCanvas().style.cursor = getMapPolicy(latest.current.run).allowCountrySelection ? 'pointer' : 'default'; });
             atlas.on('mouseleave', 'countries', () => { atlas.getCanvas().style.cursor = ''; });
             const resize = new ResizeObserver(() => atlas.resize());
             resize.observe(host.current);
@@ -95,5 +98,5 @@ export default function MapboxAtlas({ run, onSelect, onError }: MapboxAtlasProps
         }
     }, []);
     useEffect(() => { paint(); }, [run]);
-    return <div className="mapbox-atlas" style={{ position: 'absolute', inset: 0, minHeight: 300 }}><div ref={host} style={{ position: 'absolute', inset: 0 }} aria-label="Interactive local geography atlas. Use country search to make accessible moves."/><span style={{ position: 'absolute', bottom: 10, left: 14, fontSize: 9, color: '#8aa9a0', letterSpacing: 2, pointerEvents: 'none' }}>NATURAL EARTH · MAPBOX GL</span></div>;
+    return <div className="mapbox-atlas" style={{ position: 'absolute', inset: 0, minHeight: 300 }}><div ref={host} style={{ position: 'absolute', inset: 0 }} aria-label="Unlabeled local geography atlas. Enter country names to move; only Pinpoint uses map selection."/><span style={{ position: 'absolute', bottom: 10, left: 14, fontSize: 9, color: '#8aa9a0', letterSpacing: 2, pointerEvents: 'none' }}>NATURAL EARTH · MAPBOX GL</span></div>;
 }
