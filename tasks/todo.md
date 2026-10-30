@@ -64,3 +64,14 @@
 - Shared semantic marker icons distinguish start, finish, current position, numbered visits, intel, blocked points and danger in both renderers. Coincident roles are separated, with a matching legend.
 - 45 automated tests pass; TypeScript and production static export pass. Browser completed a seven-move Heist and confirmed Ghost Route retains only two endpoint markers after movement.
 - Desktop and 390px mobile layouts verified; mobile map reserves space for its wrapped legend. Existing private Site publication prepared from the verified output.
+
+## Larger desktop globe and starfield
+- [x] Increase the initial desktop globe size while preserving fitted scroll zoom.
+- [x] Add faint mint stars, sparse constellation lines and twinkling, plus one randomized shooting star every ten seconds.
+- [x] Verify responsive rendering, reduced motion, production build and publish the existing private Site.
+
+### Globe and starfield review
+- Desktop starts roughly 30% larger using a closer camera, retaining the fitted scroll endpoint and existing mobile framing.
+- Sitewide decorative sky uses 132 seeded mint stars, 21 sparse constellation segments, staggered twinkles and a single 620ms randomized shooting star every ten visible seconds.
+- Pointer-transparent decoration stays behind content. Reduced-motion preferences and hidden tabs stop animation; hydration uses deterministic star positions.
+- Browser verified desktop and 390px phone appearance, zero mobile overflow, changing twinkle opacity and successive randomized shooting positions. TypeScript and production static export pass.

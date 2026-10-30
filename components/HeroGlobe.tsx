@@ -103,7 +103,8 @@ export default function HeroGlobe() {
           // Fit the actual model sphere, including all mesh layers, at the closest zoom.
           closestDistance = (framingRadius / Math.sin(limitingHalfFov)) * 1.16;
           const desktop = window.matchMedia('(min-width: 801px)').matches;
-          baseDistance = closestDistance * (desktop ? 1.5 : 1.12);
+          // Start closer on desktop; retain a little scroll zoom before the fitted endpoint.
+          baseDistance = closestDistance * (desktop ? 1.18 : 1.12);
           pendingRender = true;
           updateScroll();
         };
