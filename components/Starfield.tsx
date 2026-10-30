@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, type CSSProperties } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import './Starfield.css';
 
 // A fixed seed keeps server HTML and client hydration identical, while scattering
@@ -36,9 +36,34 @@ function makeSky() {
   return { stars, lines };
 }
 const sky = makeSky();
+type Connection = (typeof sky.lines)[number];
+const initialConstellations = Array.from({ length: 7 }, (_, i) => sky.lines.slice(i * 3, i * 3 + 3));
+
+// Choose a short chain of real, nearby stars rather than arbitrary empty points.
+function reconnect(previous: Connection[]): Connection[] {
+  const starts = sky.stars.filter(star => star.x !== previous[0].x1 || star.y !== previous[0].y1);
+  let current = starts[Math.floor(Math.random() * starts.length)];
+  const used = new Set([current]);
+  const lines: Connection[] = [];
+  for (let step = 0; step < 3; step++) {
+    const neighbors = sky.stars
+      .filter(star => !used.has(star))
+      .map(star => ({ star, distance: Math.hypot(star.x - current.x, star.y - current.y) }))
+      .filter(({ distance }) => distance > 2 && distance < 18)
+      .sort((a, b) => a.distance - b.distance)
+      .slice(0, 6);
+    if (!neighbors.length) break;
+    const next = neighbors[Math.floor(Math.random() * neighbors.length)].star;
+    lines.push({ x1: current.x, y1: current.y, x2: next.x, y2: next.y });
+    used.add(next);
+    current = next;
+  }
+  return lines.length ? lines : previous;
+}
 
 /** Quiet, non-interactive atmosphere shared by the arcade and policy pages. */
 export default function Starfield() {
+  const [constellations, setConstellations] = useState(initialConstellations);
   const hostRef = useRef<HTMLDivElement>(null);
   const shootingRef = useRef<HTMLSpanElement>(null);
 
@@ -86,7 +111,17 @@ export default function Starfield() {
 
   return <div className="site-starfield" ref={hostRef} aria-hidden="true">
     <svg className="starfield-constellations" viewBox="0 0 100 100" preserveAspectRatio="none" focusable="false">
-      {sky.lines.map((line, i) => <line key={i} {...line} vectorEffect="non-scaling-stroke" />)}
+      {constellations.map((lines, group) => <g key={group} className="starfield-constellation" style={{
+        '--constellation-duration': `${9 + group * .85}s`,
+        '--constellation-delay': `${group * .7}s`,
+      } as CSSProperties} onAnimationIteration={event => {
+        // Endpoints change only while fully invisible between animation cycles.
+        if (event.target !== event.currentTarget) return;
+        const next = reconnect(lines);
+        setConstellations(current => current.map((value, index) => index === group ? next : value));
+      }}>
+        {lines.map((line, i) => <line key={i} {...line} vectorEffect="non-scaling-stroke" />)}
+      </g>)}
     </svg>
     {sky.stars.map((star, i) => <span key={i} className="starfield-star" style={{
       left: `${star.x}%`, top: `${star.y}%`, width: star.size, height: star.size,

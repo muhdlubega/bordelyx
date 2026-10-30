@@ -8,3 +8,4 @@
 - Camera zoom must be bounded by the actual transformed model sphere and the canvas's limiting field of view. Enlarging a model in a narrow side-panel canvas creates avoidable clipping; use a full-width backdrop when it should sit behind hero text.
 - Remove rejected mechanics throughout the product, including instructions, daily carry-over and result metrics, rather than merely hiding their controls.
 - Map points need recognizable shapes and a matching legend, with persistent start/finish markers and a separate current-position marker. Keep icon size readable at mobile map scale and avoid overlapping badges at the same country.
+- Animated constellation requests need changing connections between actual stars, with invisible transition intervals, rather than only stationary line decorations. Keep every endpoint visible at mobile sizes.

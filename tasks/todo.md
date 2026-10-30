@@ -75,3 +75,13 @@
 - Sitewide decorative sky uses 132 seeded mint stars, 21 sparse constellation segments, staggered twinkles and a single 620ms randomized shooting star every ten visible seconds.
 - Pointer-transparent decoration stays behind content. Reduced-motion preferences and hidden tabs stop animation; hydration uses deterministic star positions.
 - Browser verified desktop and 390px phone appearance, zero mobile overflow, changing twinkle opacity and successive randomized shooting positions. TypeScript and production static export pass.
+
+## Reconnecting constellations
+- [x] Fade constellation groups out and reconnect different nearby star points before fading back in.
+- [x] Preserve faint styling, responsive layout and reduced-motion/hidden-tab pause behavior.
+- [x] Verify changing endpoints, production build and publish the existing Site.
+
+### Constellation animation review
+- Seven independently staggered groups fade out completely before choosing a different starting star and nearby chain, then fade back in over 9–14 second cycles.
+- Browser confirmed six groups changed endpoints between observations, with simultaneous fade/hidden states. All42 line endpoints match visible stars on390px mobile.
+- Reduced motion keeps static lines; hidden tabs pause the CSS lifecycle. Focused peer review, TypeScript and production export pass.
