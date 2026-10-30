@@ -41,3 +41,14 @@
 - 250 local country/territory names and 323 symmetric land borders; seeded challenges retain the original 58-country objective pool.
 - 38 tests pass; TypeScript and production static export include both new policy pages.
 - Browser verified Canada as a wrong border guess (red ×, retained field), Atlantis as an unknown guess, and valid Poland → Russia → China movement (green feedback, world atlas framing).
+
+## Globe tint and desktop framing
+- [x] Apply a green runtime tint while retaining texture detail.
+- [x] Center the desktop globe behind the hero copy and fit the closest camera position to the whole model.
+- [x] Verify zoom framing, text readability and mobile layout; build and prepare the existing private Site update.
+
+### Globe framing review
+- Runtime shader color grading produces a green tint while preserving the original texture detail and mesh lighting.
+- Desktop canvas spans the full hero behind centered text; camera framing bounds every transformed mesh with a fitted closest endpoint.
+- Browser verified the full sphere at maximum 1.5× desktop zoom with a 1.16 fit margin, legible text, and no renderer errors.
+- Mobile 390px rendering fits without horizontal overflow; TypeScript and production static export pass.

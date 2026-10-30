@@ -1,6 +1,6 @@
 # Globe model
 
-The homepage uses the supplied `globe.glb` with Three.js and GLTFLoader. The asset's geometry, embedded textures and materials are preserved; framing, lighting, rotation and scroll zoom are applied at runtime.
+The homepage uses the supplied `globe.glb` with Three.js and GLTFLoader. The asset's geometry, embedded textures and materials are preserved; framing, lighting, rotation, green color grading and fitted scroll zoom are applied at runtime.
 
 Embedded attribution:
 - Title: Airports around the world

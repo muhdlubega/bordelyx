@@ -90,7 +90,7 @@ main { max-width: 1440px; margin: auto; }
 .hero-scroll { height: calc(100svh + 200px); max-height: 1080px; min-height: 880px; position: relative; }
 .hero { height: min(760px, calc(100svh - 40px)); min-height: 620px; position: sticky; top: 0; overflow: hidden; isolation: isolate; display: flex; align-items: center; }
 .hero-globe-stage { position: absolute; right: -3%; top: 0; width: 64%; height: 100%; z-index: -1; pointer-events: none; }
-.hero-globe-stage:before { content: ''; position: absolute; inset: 10%; background: radial-gradient(ellipse, #4d84b719, transparent 70%); z-index: -1; }
+.hero-globe-stage:before { content: ''; position: absolute; inset: 10%; background: radial-gradient(ellipse, #6bbf8e20, transparent 70%); z-index: -1; }
 .hero-globe-model { width: 100%; height: 100%; display: block; }
 .hero-content { width: 58%; max-width: 750px; padding-left: max(40px, calc((100% - 1280px) / 2)); position: relative; z-index: 1; padding-bottom: var(--space-7); pointer-events: none; }
 .hero-content button { pointer-events: auto; }
@@ -107,7 +107,7 @@ main { max-width: 1440px; margin: auto; }
 .hero-scroll-hint span { font-size: var(--font-xs); letter-spacing: 1.5px; }
 .hero-scroll-hint svg { transform: rotate(90deg); }
 .globe-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: var(--space-4); color: var(--muted); font-size: var(--font-xs); }
-.globe-loading-orb { width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #4e778e, #152d45 55%, #071119 75%); box-shadow: inset -15px -15px 25px #0008, 0 0 70px #5982b91a; }
+.globe-loading-orb { width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #6b9b7b, #183b2b 55%, #081711 75%); box-shadow: inset -15px -15px 25px #0008, 0 0 70px #5982b91a; }
 
 /* Home and mode library */
 .daily-strip, .mode-section, .showtime, footer { margin-left: auto; margin-right: auto; width: calc(100% - 80px); max-width: 1280px; }
@@ -210,6 +210,18 @@ footer .brand { font-size: 22px; }footer .brand-mark svg { width: 24px; height: 
 .atlas-blind { height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: var(--space-4); text-align: center; padding: var(--space-5); color: #8ca998; }.atlas-blind h2 { font-size: 24px; color: #c7e4d2; }.atlas-blind p { font-size: var(--font-sm); max-width: 300px; }.atlas-blind small { font-size: var(--font-xs); }.map-pin { animation: map-pulse 3s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }.route-path { animation: route-draw 25s linear infinite; }
 
 @keyframes urgency { 50% { background: #e8a29814; } }@keyframes map-pulse { 50% { opacity: .06; scale: 1.2; } }@keyframes route-draw { from { stroke-dashoffset: 500; } to { stroke-dashoffset: 0; } }
+
+/* Desktop globe is a fitted backdrop behind the headline, not a clipped side panel. */
+@media (min-width: 801px) {
+  .hero { overflow: visible; }
+  .hero .hero-globe-stage { inset: 0; width: 100%; height: 100%; }
+  .hero:after { content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 45%, #0b12176b, #0b121730 38%, transparent 70%); }
+  .hero .hero-content { width: 100%; max-width: none; padding: 0 40px var(--space-7); text-align: center; }
+  .hero h1 { text-shadow: 0 3px 28px #06140dcc; }
+  .hero p { margin-left: auto; margin-right: auto; color: #c0d2c6; text-shadow: 0 2px 14px #07120e; }
+  .hero-actions, .hero-foot { justify-content: center; }
+  .hero-scroll-hint { left: 50%; transform: translateX(-50%); }
+}
 
 @media (max-width: 1100px) {
   .site-header { gap: var(--space-6); }.site-header nav { gap: var(--space-4); }.header-right { gap: var(--space-4); }

@@ -74,6 +74,8 @@ export default function HeroGlobe() {
         scene.add(rim);
 
         let baseDistance = 3.15;
+        let closestDistance = 3.0;
+        let framingRadius = 1;
         let scrollProgress = 0;
         let easedProgress = 0;
         let previousTime = 0;
@@ -98,7 +100,10 @@ export default function HeroGlobe() {
           camera.updateProjectionMatrix();
           const halfFov = THREE.MathUtils.degToRad(camera.fov / 2);
           const limitingHalfFov = Math.atan(Math.tan(halfFov) * Math.min(1, camera.aspect));
-          baseDistance = (1 / Math.sin(limitingHalfFov)) * 1.1;
+          // Fit the actual model sphere, including all mesh layers, at the closest zoom.
+          closestDistance = (framingRadius / Math.sin(limitingHalfFov)) * 1.16;
+          const desktop = window.matchMedia('(min-width: 801px)').matches;
+          baseDistance = closestDistance * (desktop ? 1.5 : 1.12);
           pendingRender = true;
           updateScroll();
         };
@@ -109,14 +114,16 @@ export default function HeroGlobe() {
           previousTime = time;
           const easing = reducedMotion.matches ? 1 : 1 - Math.exp(-delta * 5);
           easedProgress += (scrollProgress - easedProgress) * easing;
-          // A conservative close-up keeps the provided mesh clear of the camera.
-          camera.position.set(0, 0.04, baseDistance * (1 - 0.4 * easedProgress));
+          // The close-up is a fitted endpoint, so scrolling cannot crop the globe.
+          const distance = THREE.MathUtils.lerp(baseDistance, closestDistance, easedProgress);
+          camera.position.set(0, 0, Math.max(closestDistance, distance));
           camera.lookAt(0, 0, 0);
           if (model && !reducedMotion.matches) globe.rotation.y += delta * 0.045;
-          const zoom = (1 / (1 - 0.4 * easedProgress)).toFixed(3);
+          const zoom = (baseDistance / Math.max(closestDistance, distance)).toFixed(3);
           canvas!.dataset.zoom = zoom;
           host!.dataset.zoom = zoom;
           host!.dataset.rotation = globe.rotation.y.toFixed(4);
+          host!.dataset.fitMargin = (distance / (closestDistance / 1.16)).toFixed(3);
           renderer.render(scene, camera);
           pendingRender = Math.abs(scrollProgress - easedProgress) > 0.0001;
           if (!reducedMotion.matches || pendingRender) schedule();
@@ -179,7 +186,32 @@ export default function HeroGlobe() {
         model.position.sub(center);
         normalized.scale.setScalar(1 / Math.max(radius, 0.0001));
         globe.add(normalized);
+        normalized.updateWorldMatrix(true, true);
+        const tintedMaterials = new Set<Material>();
+        // Bound each transformed mesh rather than estimating a globe from its box.
+        model.traverse(node => {
+          const mesh = node as Mesh;
+          if (!mesh.geometry) return;
+          mesh.geometry.computeBoundingSphere();
+          const sphere = mesh.geometry.boundingSphere?.clone().applyMatrix4(mesh.matrixWorld);
+          if (sphere) framingRadius = Math.max(framingRadius, sphere.center.length() + sphere.radius);
+          for (const material of Array.isArray(mesh.material) ? mesh.material : [mesh.material]) {
+            if (!material || tintedMaterials.has(material)) continue;
+            tintedMaterials.add(material);
+            // Grade light output in the shader to retain texture detail and shading.
+            material.onBeforeCompile = shader => {
+              shader.fragmentShader = shader.fragmentShader.replace('#include <opaque_fragment>', `
+                float atlasLuminance = dot(outgoingLight, vec3(0.2126, 0.7152, 0.0722));
+                outgoingLight = mix(outgoingLight, atlasLuminance * vec3(0.45, 1.4, 0.75), 0.96);
+                #include <opaque_fragment>
+              `);
+            };
+            material.customProgramCacheKey = () => 'bordelyx-mint-globe-v1';
+            material.needsUpdate = true;
+          }
+        });
         globe.rotation.set(-0.12, -1.9, 0.04);
+        resize();
         setState('ready');
         pendingRender = true;
         schedule();
