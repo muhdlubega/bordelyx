@@ -3,6 +3,7 @@ export function Icon({ name, size = 24 }: {
     size?: number;
 }) {
     const paths: Record<string, React.ReactNode> = {
+        danger: <><path d="M12 3 2 21h20Z"/><path d="M12 9v5m0 3v.1"/></>,
         globe: <><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 6.5h14M5 17.5h14"/></>,
         royale: <><path d="m3 7 4 4 5-8 5 8 4-4-2 12H5Z"/><path d="M8 22h8"/></>,
         heist: <><path d="m12 2 9 5v10l-9 5-9-5V7Z"/><path d="m3 7 9 5 9-5M12 12v10M7 4l10 6"/></>,

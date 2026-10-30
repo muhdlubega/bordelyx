@@ -52,3 +52,15 @@
 - Desktop canvas spans the full hero behind centered text; camera framing bounds every transformed mesh with a fitted closest endpoint.
 - Browser verified the full sphere at maximum 1.5× desktop zoom with a 1.16 fit margin, legible text, and no renderer errors.
 - Mobile 390px rendering fits without horizontal overflow; TypeScript and production static export pass.
+
+## Toolkit removal and map points
+- [x] Remove tactical abilities, dock, undo, ability metrics and obsolete instructions.
+- [x] Add consistent start, finish, current-position, visited, intel, blocked and danger markers to SVG and Mapbox maps.
+- [x] Preserve typed-only maps, hidden country names, Ghost endpoints, Fog and Pinpoint answer concealment.
+- [x] Verify marker visibility on desktop/mobile, regressions and production build; publish the existing Site.
+
+### Toolkit and marker review
+- Removed tactical powers, undo, ability metrics and all obsolete game instructions; normal typed land-border movement remains solvable.
+- Shared semantic marker icons distinguish start, finish, current position, numbered visits, intel, blocked points and danger in both renderers. Coincident roles are separated, with a matching legend.
+- 45 automated tests pass; TypeScript and production static export pass. Browser completed a seven-move Heist and confirmed Ghost Route retains only two endpoint markers after movement.
+- Desktop and 390px mobile layouts verified; mobile map reserves space for its wrapped legend. Existing private Site publication prepared from the verified output.

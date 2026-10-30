@@ -15,8 +15,8 @@ export function getMapPolicy(run?: Run) {
         showCurrentPosition: !onlyEndpoints && (!playing || !pinpoint),
         showCheckpoints: !onlyEndpoints && !pinpoint,
         showHazards: !onlyEndpoints && !pinpoint,
-        showNeighborHints: !!(playing && !onlyEndpoints && !pinpoint && run?.effects.pulse),
-        showScoutHints: !!(playing && !onlyEndpoints && !pinpoint && run?.effects.scout),
+        showNeighborHints: false,
+        showScoutHints: false,
         showTinyCountries: !onlyEndpoints,
     };
 }

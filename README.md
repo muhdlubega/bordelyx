@@ -1,6 +1,6 @@
 # Bordelyx
 
-A browser geography strategy arcade built with Next.js, TypeScript, Tailwind, Motion, Three.js and Zustand. Seven modes, one shared tactical toolkit, and a deterministic three-round Daily World Circuit.
+A browser geography strategy arcade built with Next.js, TypeScript, Tailwind, Motion, Three.js and Zustand. Seven modes, clear map markers, typed country routes, and a deterministic three-round Daily World Circuit.
 
 ## Run locally
 
@@ -28,16 +28,16 @@ npm run build
 - **Border Rush:** connect the start and destination using real land borders.
 - **Country Chain:** connect 12 unique countries, or enable Endless to continue until trapped, the clock expires, or all supported countries are visited.
 - **Map Escape:** escape a danger wave that spreads every move.
-- **Ghost Route:** only the fixed start and destination markers appear over the map grid. Type your route from memory; country shapes and the route are revealed after the run. Scout and Pulse are disabled in this mode.
+- **Ghost Route:** only the fixed start and destination markers appear over the map grid. Type your route from memory; country shapes and the route are revealed after the run.
 - **Pinpoint:** locate a named country with one map selection. Scores use distance between country centers, not click coordinates.
 
-All route modes require **full typed country names**. Country labels, country hover names, map selection and passive neighboring-country highlights are disabled. The field is unrestricted and has no options list or autocomplete. Common names and aliases such as UK and USA are accepted; raw ISO codes are not used as a country-name shortcut. Incorrect or unknown guesses remain in the field with a red × and an explanation; valid moves get a green check. Wrong guesses deduct 50 points (to a minimum of zero) and end Hardcore runs. Accents and familiar names such as Turkey / Türkiye and Czech Republic / Czechia are supported. Only Pinpoint allows selection on an unlabeled map. Blind hides the atlas until results; Fog reveals local territory; Time Rush, Hardcore, Limited Moves, One-Way Route and Chaos change the rules. One-Way is excluded from Heist because required detours can revisit countries. Ghost Route excludes Blind/Fog and all map-revealing hints. Pinpoint only offers compatible modifiers. Country names and route geometry are revealed after a run.
+All route modes require **full typed country names**. Country labels, country hover names, map selection and passive neighboring-country highlights are disabled. The field is unrestricted and has no options list or autocomplete. Common names and aliases such as UK and USA are accepted; raw ISO codes are not used as a country-name shortcut. Incorrect or unknown guesses remain in the field with a red × and an explanation; valid moves get a green check. Wrong guesses deduct 50 points (to a minimum of zero) and end Hardcore runs. Accents and familiar names such as Turkey / Türkiye and Czech Republic / Czechia are supported. Only Pinpoint allows selection on an unlabeled map. Blind hides the atlas until results; Fog reveals local territory; Time Rush, Hardcore, Limited Moves, One-Way Route and Chaos change the rules. One-Way is excluded from Heist because required detours can revisit countries. Ghost Route excludes Blind/Fog and shows only its fixed start and finish markers. Pinpoint only offers compatible modifiers. Country names and route geometry are revealed after a run.
 
-Dash crosses up to two land borders in one action. Shield absorbs one danger wave. Scout reveals the next wave and fogged territory. Reroute opens a blocked region or clears adjacent danger. Pulse highlights valid moves. Ability charges are limited; undo never refunds time or charges.
+Each valid land-border crossing costs one move. The tactical toolkit and its powers have been removed. Start and finish flags, a current-position arrow, numbered visited stops, intel diamonds, and blocked/danger symbols distinguish map points by shape as well as color.
 
 ## Daily and social play
 
-The Daily World Circuit uses `CIRCUIT-YYYY-MM-DD` with a **UTC** reset. Heist → Royale → Chain; accumulated score and remaining abilities carry forward. A complete circuit earns a streak day once, even on retries. Profile scores, badges and streak dates are stored on the current device using localStorage. Clearing browser data clears the passport.
+The Daily World Circuit uses `CIRCUIT-YYYY-MM-DD` with a **UTC** reset. Heist → Royale → Chain; accumulated score carries forward. A complete circuit earns a streak day once, even on retries. Profile scores, badges and streak dates are stored on the current device using localStorage. Clearing browser data clears the passport.
 
 Practice runs generate seeds. Codes such as `royale:WORLD42` recreate the same standard-rule challenge. Share copies a result and challenge URL; daily links start today's circuit. Codes use standard rules so stale practice modifiers cannot alter a shared challenge. This version has no server leaderboard, accounts, multiplayer synchronization or anti-cheat; viewer competition happens through shared codes/results.
 
@@ -57,11 +57,11 @@ Set `NEXT_PUBLIC_MAPBOX_TOKEN` to opt into the Mapbox GL JS adapter. It uses a l
 
 - `app/`: homepage, arcade selection, run HUD, setup/results, `/privacy/` and `/terms/` policy pages.
 - `components/`: Three.js hero scene, shared footer with visible Sketchfab credit, policy layout, custom icons, illustrated game posters and map renderers.
-- `lib/engine.ts`: deterministic challenges, path rules, abilities, danger, scoring and results.
+- `lib/engine.ts`: deterministic challenges, path rules, danger, scoring and results.
 - `lib/map-policy.ts`: shared country-label, selection and endpoint-only rendering rules.
 - `lib/country-input.ts`: full-name entry and common-name aliases.
 - `lib/progress.ts`: persisted player passport and UTC streak calculations.
-- `tests/`: border, seeded solvability, ability, modifier, endless and streak regression checks.
+- `tests/`: border, seeded solvability, modifier, endless and streak regression checks.
 - `public/art/`: supplied 3D globe and model credits. The earlier generated bitmap is retained as an unused project asset.
 - `.openai/hosting.json`: private Site identity and static output configuration.
 
@@ -69,7 +69,7 @@ Motion respects `prefers-reduced-motion`; sound is opt-in. All seven modes are p
 
 ## Validation
 
-TypeScript, production static export and 38 automated tests pass. Seed tests cover 160 route/survival solutions, 30 Ghost Route completions and additional Heist checkpoint-order cases. Regression tests enforce unlabeled typed-only maps, endpoint-only visibility, explicit Pulse hints and full-name parsing. Browser checks cover desktop/phone layout, custom-code start, typed border movement, a complete Rush run, result view, route replay, and a full three-round daily circuit with score/ability carry-over and saved streak/badges. The refinement was also browser-tested at 1440px, 390px and 319px: the supplied globe loads, rotates and zooms on scroll; route maps contain zero labels/selectable territories/passive hints; ISO shortcuts are rejected; full-name entry completes a Rush run; Ghost Route retains exactly two fixed markers after movement. Optional Mapbox token mode is not runtime verified.
+TypeScript, production static export and 45 automated tests pass. Seed tests cover 160 route/survival solutions, 30 Ghost Route completions and additional Heist checkpoint-order cases. Regression tests enforce unlabeled typed-only maps, endpoint-only visibility, marker visibility and full-name parsing. Browser checks cover desktop/phone layout, custom-code start, typed border movement, a complete Rush run, result view, route replay, and a full three-round daily circuit with score carry-over and saved streak/badges. The refinement was also browser-tested at 1440px, 390px and 319px: the supplied globe loads, rotates and zooms on scroll; route maps contain zero labels/selectable territories/passive hints; ISO shortcuts are rejected; full-name entry completes a Rush run; Ghost Route retains exactly two fixed markers after movement. Optional Mapbox token mode is not runtime verified.
 
 ## Supplied globe credits
 
@@ -78,3 +78,7 @@ TypeScript, production static export and 38 automated tests pass. Seed tests cov
 ## Policy and footer pages
 
 Every page includes model attribution to famousandfaded on Sketchfab, Privacy policy, Terms of use and How to play. Policies describe the actual browser-local game records, explicit sharing and separate hosting/access-provider processing. No operator contact information is invented; the current policy directs site questions to the person or organization that shared the site. The former presentation-only streamer toggle has been removed; shared challenge codes remain.
+
+## Map marker guide
+
+Start uses a mint flag, finish a cyan checkered flag, current position an ivory arrow, and visited countries numbered dots. Intel checkpoints use amber briefcase diamonds and change to a check when collected. A coral crossed square marks a blocked country; a warning triangle marks danger. SVG and optional Mapbox use one marker descriptor/icon set. Marker sizes remain consistent in screen pixels and overlapping roles use separated badges with leader lines. Ghost Route keeps only its two endpoints; Pinpoint hides all answer-related markers during play. Sound is available in Pause. There is no tactical toolkit or undo control.

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { initialRun, move, useAbility, type Mode } from '../lib/engine';
+import { initialRun, move, type Mode } from '../lib/engine';
 import { getMapPolicy } from '../lib/map-policy';
 import { shortestPath } from '../lib/geography';
 
@@ -12,14 +12,12 @@ test('routing modes hide country names and disallow all map selection by default
         assert.equal(policy.showNeighborHints, false, mode);
     }
 });
-test('only a limited Pulse charge reveals neighboring options', () => {
-    const run = initialRun('rush', 'pulse-hint');
-    assert.equal(getMapPolicy(run).showNeighborHints, false);
-    const pulsed = useAbility(run, 'pulse');
-    assert.equal(pulsed.abilities.pulse, run.abilities.pulse - 1);
-    assert.equal(getMapPolicy(pulsed).showNeighborHints, true);
-    assert.equal(getMapPolicy(pulsed).allowCountrySelection, false);
-    assert.equal(getMapPolicy(pulsed).showCountryLabels, false);
+test('routing modes never reveal neighboring or upcoming danger hints', () => {
+    for (const mode of ['rush', 'royale', 'heist', 'chain', 'escape', 'ghost'] as Mode[]) {
+        const policy = getMapPolicy(initialRun(mode, 'no-toolkit-hints'));
+        assert.equal(policy.showNeighborHints, false);
+        assert.equal(policy.showScoutHints, false);
+    }
 });
 test('ghost map shows only start and end throughout the route, then reveals the result', () => {
     let run = initialRun('ghost', 'hidden-itinerary');

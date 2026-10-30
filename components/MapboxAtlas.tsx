@@ -3,7 +3,9 @@ import { useEffect, useRef } from 'react';
 import mapboxgl, { type ExpressionSpecification, type GeoJSONSource, type Map as MapboxMap } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { countryById } from '@/lib/geography';
-import { validMoves, type Run } from '@/lib/engine';
+import type { Run } from '@/lib/engine';
+import {getMapMarkers,markerColors} from '@/lib/map-markers';
+import {markerIconMarkup} from './MapMarkerIcon';
 import { getMapPolicy } from '@/lib/map-policy';
 import {needsWorldAtlas} from '@/lib/atlas-view';
 export interface MapboxAtlasProps {
@@ -17,7 +19,7 @@ function fillExpression(run?: Run): ExpressionSpecification {
     const policy = getMapPolicy(run);
     for (const country of Object.values(countryById)) {
         const id = country.id;
-        const fill = policy.showHazards && run?.danger.includes(id) ? '#743b3c' : policy.showHazards && run?.blocked.includes(id) ? '#252d36' : policy.showCurrentPosition && run?.current === id ? '#b4efb4' : run?.target === id && run.mode !== 'pinpoint' ? '#50958b' : policy.showCheckpoints && run?.checkpoints.includes(id) ? run.collected.includes(id) ? '#487e66' : '#826342' : policy.showRoute && run?.route.includes(id) ? '#3f6b59' : policy.showNeighborHints && run && validMoves(run).includes(id) ? '#31594f' : '#233c3e';
+        const fill = policy.showHazards && run?.danger.includes(id) ? '#743b3c' : policy.showHazards && run?.blocked.includes(id) ? '#252d36' : policy.showCurrentPosition && run?.current === id ? '#b4efb4' : run?.target === id && run.mode !== 'pinpoint' ? '#50958b' : policy.showCheckpoints && run?.checkpoints.includes(id) ? run.collected.includes(id) ? '#487e66' : '#826342' : policy.showRoute && run?.route.includes(id) ? '#3f6b59' : '#233c3e';
         match.push(id, fill);
     }
     match.push('#142e34');
@@ -45,15 +47,16 @@ export default function MapboxAtlas({ run, onSelect, onError }: MapboxAtlasProps
             return;
         const policy = getMapPolicy(r);
         if (needsWorldAtlas(r)) { atlas.setMinZoom(0); atlas.setMaxBounds([[-180,-85],[180,85]]); if (atlas.getZoom() > 2) atlas.fitBounds([[-180,-70],[180,80]],{padding:30,duration:0}); }
-        for (const [id, kind] of [...(policy.showCurrentPosition ? [[r.current, 'current']] : []), ...(r.mode === 'pinpoint' ? [] : [[r.target, 'target']]), ...(policy.showCheckpoints ? r.checkpoints.filter(id => !r.collected.includes(id)).map(id => [id, 'intel']) : [])]) {
-            const country = countryById[id];
-            if (!country)
-                continue;
-            const el = document.createElement('div');
-            el.className = `mapbox-game-marker ${kind}`;
-            el.style.cssText = `width:${kind === 'current' ? 18 : 13}px;height:${kind === 'current' ? 18 : 13}px;border-radius:${kind === 'intel' ? '3px' : '50%'};background:${kind === 'intel' ? '#ffc280' : kind === 'target' ? '#7be2d0' : '#c3f6b5'};border:3px solid #16392e;box-shadow:0 0 0 7px #b5f5b31c,0 0 24px #b5f5b355;pointer-events:none;`;
-            el.setAttribute('aria-label', `${kind}: ${country.name}`);
-            markers.current.push(new mapboxgl.Marker({ element: el }).setLngLat([country.lon, country.lat]).addTo(atlas));
+        for (const point of getMapMarkers(r)) {
+            const country=countryById[point.countryId],el=document.createElement('div');
+            const size=['start','finish','current'].includes(point.kind)?28:point.kind==='checkpoint'?25:point.kind==='visited'?21:18;
+            el.className=`mapbox-game-marker marker-${point.kind}`;
+            el.dataset.markerKind=point.kind;
+            el.style.cssText='position:relative;width:28px;height:28px;pointer-events:none;filter:drop-shadow(0 2px 4px #0009)';
+            el.innerHTML=markerIconMarkup({kind:point.kind,size,number:point.number,collected:point.collected});
+            el.setAttribute('role','img');el.setAttribute('aria-label',point.ariaLabel);
+            if(point.label){const tag=document.createElement('span');tag.className='map-point-label';tag.textContent=point.label;tag.style.cssText=`position:absolute;left:50%;top:${point.kind==='current'?43:36}px;transform:translateX(-50%);font-size:9px;font-weight:700;letter-spacing:1px;white-space:nowrap;color:${markerColors[point.kind]};text-shadow:0 1px 3px #071b21,0 0 5px #071b21`;el.appendChild(tag);}
+            markers.current.push(new mapboxgl.Marker({element:el,offset:point.offset}).setLngLat([country.lon,country.lat]).addTo(atlas));
         }
     }
     useEffect(() => {

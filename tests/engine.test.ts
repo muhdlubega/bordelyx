@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { countries, expeditionCountries, countryById, shortestPath } from '../lib/geography';
-import { initialRun, move, useAbility, undoMove, tick, validMoves, type Mode } from '../lib/engine';
+import { initialRun, move, tick, validMoves, type Mode } from '../lib/engine';
 test('global borders are symmetric and seeded expedition countries remain reachable', () => {
     for (const c of countries) {
         for (const id of c.neighbors) {
@@ -49,42 +49,6 @@ test('daily survival has a reachable safe solution', () => {
                 r = move(r, id);
             assert.equal(r.status, 'won', `${mode} ${seed}: ${r.message}`);
         }
-});
-test('dash consumes a single charge and crosses two borders in one turn', () => {
-    let r = initialRun('rush', 'dash');
-    r = useAbility(r, 'dash');
-    assert.equal(r.abilities.dash, 0);
-    const target = validMoves(r).find(id => shortestPath(r.current, id, [...r.blocked, ...r.danger]).length === 3)!;
-    assert.ok(target);
-    r = move(r, target);
-    assert.equal(r.turn, 1);
-    assert.equal(r.route.length, 3);
-    assert.equal(r.effects.dash, false);
-    assert.equal(useAbility(r, 'dash').abilities.dash, 0);
-});
-test('shield protects its country for one danger wave', () => {
-    let r = initialRun('escape', 'shield');
-    const next = validMoves(r)[0];
-    const neighbor = countryById[next].neighbors.find(id => id !== r.current)!;
-    r = { ...r, danger: [neighbor] };
-    r = useAbility(r, 'shield');
-    r = move(r, next);
-    assert.ok(!r.danger.includes(next));
-    assert.equal(r.effects.shield, false);
-    assert.notEqual(r.status, 'lost');
-});
-test('undo does not refund time or used abilities and cannot bypass hardcore', () => {
-    let r = initialRun('rush', 'undo');
-    r = move(r, validMoves(r)[0]);
-    r = useAbility(r, 'pulse');
-    r = tick(r, 10);
-    const restored = undoMove(r);
-    assert.equal(restored.current, r.start);
-    assert.equal(restored.timeLeft, r.timeLeft);
-    assert.equal(restored.abilities.pulse, 1);
-    let hardcore = initialRun('rush', 'undo', ['hardcore']);
-    hardcore = move(hardcore, validMoves(hardcore)[0]);
-    assert.equal(undoMove(hardcore), hardcore);
 });
 test('time is finite and ended runs are immutable', () => {
     const r = tick(initialRun('rush', 'timer'), 500);
@@ -144,20 +108,6 @@ test('daily-style chain still ends at twelve and endless is ignored in other mod
     assert.equal(r.route.length, 12);
     assert.equal(initialRun('rush', 'ignore', [], true).endless, false);
 });
-test('dash cannot cross a visited intermediate country in chain or one-way runs', () => {
-    for (const [mode, mods] of [['chain', []], ['rush', ['oneWay']]] as const) {
-        let r = initialRun(mode, 'dash-no-repeat', [...mods]);
-        r = { ...r, start: 'FR', current: 'NL', route: ['FR', 'BE', 'NL'], blocked: ['DE'] };
-        r = useAbility(r, 'dash');
-        assert.ok(!validMoves(r).includes('LU'), 'NL → BE → LU must not reuse Belgium');
-        assert.equal(move(r, 'LU').current, 'NL');
-        r = { ...r, blocked: [] };
-        assert.ok(validMoves(r).includes('LU'), 'an unvisited two-border alternative is legal');
-        const moved = move(r, 'LU');
-        assert.deepEqual(moved.route, ['FR', 'BE', 'NL', 'DE', 'LU']);
-        assert.equal(new Set(moved.route).size, moved.route.length);
-    }
-});
 test('heist rejects incompatible one-way restriction without mutating caller settings', () => {
     const modifiers = ['oneWay', 'limited'] as const;
     const r = initialRun('heist', 'compatible', [...modifiers]);
@@ -170,11 +120,39 @@ test('ghost routes are deterministic, solvable and keep endpoint-only restrictio
         let run = initialRun('ghost', `ghost-${seed}`, ['blind', 'fog', 'noLabels', 'limited']);
         assert.deepEqual(run, initialRun('ghost', `ghost-${seed}`, ['blind', 'fog', 'noLabels', 'limited']));
         assert.deepEqual(run.modifiers, ['limited']);
-        assert.equal(run.abilities.pulse, 0);
-        assert.equal(run.abilities.scout, 0);
-        assert.deepEqual(useAbility(run, 'pulse'), run);
-        assert.deepEqual(useAbility(run, 'scout'), run);
         for (const id of shortestPath(run.start, run.target, run.blocked).slice(1)) run = move(run, id);
         assert.equal(run.status, 'won');
+    }
+});
+
+
+test('every successful move crosses one border and two-border shortcuts are rejected', () => {
+    const run = { ...initialRun('rush', 'one-border'), start: 'PT', current: 'PT', route: ['PT'], blocked: [], danger: [] };
+    assert.equal(move(run, 'FR').current, 'PT');
+    assert.equal(move(run, 'FR').invalidMoves, 1);
+    const next = move(run, 'ES');
+    assert.deepEqual(next.route, ['PT', 'ES']);
+    assert.equal(next.turn, 1);
+    assert.equal(next.score, 150);
+    assert.deepEqual(run.route, ['PT']);
+});
+
+test('danger waves have no protection and follow each survival mode cadence', () => {
+    for (const mode of ['royale', 'escape'] as const) {
+        const initial = initialRun(mode, 'danger-cadence');
+        const run = { ...initial, start: 'PT', current: 'PT', route: ['PT'], target: 'GR', blocked: [], danger: ['FR'] };
+        const next = move(run, 'ES');
+        assert.equal(next.danger.includes('ES'), mode === 'escape');
+        assert.equal(next.status, mode === 'escape' ? 'lost' : 'playing');
+    }
+});
+
+test('chain and one-way rules reject previously visited countries', () => {
+    for (const [mode, modifiers] of [['chain', []], ['rush', ['oneWay']]] as const) {
+        const initial = initialRun(mode, 'no-revisits', [...modifiers]);
+        const run = { ...initial, current: 'NL', route: ['FR', 'BE', 'NL'], blocked: [] };
+        assert.equal(validMoves(run).includes('BE'), false);
+        assert.equal(move(run, 'BE').current, 'NL');
+        assert.match(move(run, 'BE').message, /already visited/);
     }
 });

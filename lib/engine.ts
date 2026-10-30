@@ -1,7 +1,6 @@
 import { countries, expeditionCountries, countryById, shortestPath, distanceKm } from './geography';
 export type Mode = 'royale' | 'heist' | 'rush' | 'chain' | 'escape' | 'pinpoint' | 'ghost';
 export type Modifier = 'blind' | 'noLabels' | 'timeRush' | 'hardcore' | 'fog' | 'limited' | 'oneWay' | 'chaos';
-export type Ability = 'dash' | 'shield' | 'scout' | 'reroute' | 'pulse';
 export interface Run {
     mode: Mode;
     seed: string;
@@ -21,16 +20,7 @@ export interface Run {
     score: number;
     status: 'playing' | 'won' | 'lost';
     message: string;
-    abilities: Record<Ability, number>;
-    effects: {
-        dash: boolean;
-        shield: boolean;
-        scout: boolean;
-        pulse: boolean;
-    };
-    history: Run[];
     invalidMoves: number;
-    abilitiesUsed: number;
     optimalMoves: number;
     dangerOrigin: string;
 }
@@ -80,13 +70,15 @@ export function initialRun(mode: Mode, seed: string, modifiers: Modifier[] = [],
     return { mode, seed, endless: mode === 'chain' && endless, modifiers: [...new Set(modifiers)], start, current: start, target, checkpoints, collected: [], route: [start], blocked,
         danger: mode === 'royale' || mode === 'escape' ? [dangerOrigin] : [], dangerOrigin, turn: 0, maxMoves: mode === 'chain' ? (endless ? countries.length : 20) : optimalMoves + (modifiers.includes('limited') ? 2 : 7),
         timeLeft: modifiers.includes('timeRush') ? 75 : 180, score: 0, status: 'playing', message: mode === 'ghost' ? 'Only your start and extraction are visible. Type each bordering country to find your way.' : mode === 'pinpoint' ? `Find ${countryById[target].name} on the map.` : mode === 'chain' ? (endless ? 'Keep the chain alive. Visit new countries until you are trapped.' : 'Build a chain of 12 unique bordering countries.') : mode === 'heist' ? 'Collect both intel caches, then reach extraction.' : 'Plot your route. Every border is a decision.',
-        abilities: { dash: 1, shield: 1, scout: mode === 'ghost' ? 0 : 1, reroute: 1, pulse: mode === 'ghost' ? 0 : 2 }, effects: { dash: false, shield: false, scout: false, pulse: false }, history: [], invalidMoves: 0, abilitiesUsed: 0, optimalMoves };
+        invalidMoves: 0, optimalMoves };
 }
-function snapshot(r: Run): Run { return { ...r, history: [] }; }
-function copy(r: Run): Run { return { ...r, route: [...r.route], danger: [...r.danger], blocked: [...r.blocked], collected: [...r.collected], abilities: { ...r.abilities }, effects: { ...r.effects }, history: [...r.history] }; }
+function copy(r: Run): Run {
+    return { ...r, route: [...r.route], danger: [...r.danger], blocked: [...r.blocked], collected: [...r.collected] };
+}
 export function validMoves(r: Run): string[] {
-    const forbidden = [...r.blocked, ...r.danger, ...((r.mode === 'chain' || r.modifiers.includes('oneWay')) ? r.route.filter(id => id !== r.current) : [])], candidates = r.effects.dash ? countries.filter(c => { const p = shortestPath(r.current, c.id, forbidden); return p.length >= 2 && p.length <= 3; }).map(c => c.id) : countryById[r.current].neighbors;
-    return candidates.filter(id => !forbidden.includes(id) && (!(r.mode === 'chain' || r.modifiers.includes('oneWay')) || !r.route.includes(id)));
+    const forbidden = new Set([...r.blocked, ...r.danger]);
+    const noRevisits = r.mode === 'chain' || r.modifiers.includes('oneWay');
+    return countryById[r.current].neighbors.filter(id => !forbidden.has(id) && (!noRevisits || !r.route.includes(id)));
 }
 export function upcomingDanger(r: Run): string[] { return [...new Set(r.danger.flatMap(id => countryById[id].neighbors))].filter(id => !r.danger.includes(id)); }
 function finish(r: Run): Run {
@@ -103,7 +95,7 @@ function finish(r: Run): Run {
     }
     else if (r.danger.includes(r.current)) {
         r.status = 'lost';
-        r.message = 'The danger zone caught you. Use a Shield before the next expansion.';
+        r.message = 'The danger zone caught you. Try a faster route before the next expansion.';
     }
     else if (validMoves(r).length === 0) {
         r.status = 'lost';
@@ -142,42 +134,27 @@ export function move(run: Run, countryId: string): Run {
     }
     if (!validMoves(r).includes(id)) {
         const name = countryById[id].name;
-        const reason = r.blocked.includes(id) ? `${name} is blocked. Try another country or use Reroute.`
+        const reason = r.blocked.includes(id) ? `${name} is blocked. Find another route.`
             : r.danger.includes(id) ? `${name} is inside the danger zone.`
             : (r.mode === 'chain' || r.modifiers.includes('oneWay')) && r.route.includes(id) ? `You already visited ${name}. Choose a new country.`
-            : r.effects.dash ? `${name} is not reachable within two valid land borders of ${countryById[r.current].name}.`
             : `${name} does not share a valid land border with ${countryById[r.current].name}.`;
         return rejectGuess(run, reason);
     }
-    r.history.push(snapshot(run));
-    const steps = r.effects.dash ? shortestPath(r.current, id, [...r.blocked, ...r.danger, ...((r.mode === 'chain' || r.modifiers.includes('oneWay')) ? r.route.filter(x => x !== r.current) : [])]).slice(1) : [id];
-    if (r.modifiers.includes('oneWay') && steps.some(step => r.route.includes(step)))
-        return { ...run, message: 'One-Way Route: you cannot revisit a country.' };
-    r.route.push(...steps);
+    r.route.push(id);
     r.current = id;
     r.turn++;
-    r.score += steps.length * 150;
-    r.effects.dash = false;
-    r.effects.pulse = false;
-    r.effects.scout = false;
-    for (const step of steps)
-        if (r.checkpoints.includes(step) && !r.collected.includes(step)) {
-            r.collected.push(step);
-            r.score += 350;
-        }
+    r.score += 150;
+    if (r.checkpoints.includes(id) && !r.collected.includes(id)) {
+        r.collected.push(id);
+        r.score += 350;
+    }
     r.message = r.checkpoints.includes(id) ? 'Intel secured. Keep moving.' : `Border crossed. Welcome to ${countryById[id].name}.`;
     // Victory is resolved before the danger wave: reaching extraction is safe.
     if ((r.mode === 'chain' && r.route.length >= (r.endless ? countries.length : 12)) || (r.mode !== 'chain' && id === r.target && (r.mode !== 'heist' || r.checkpoints.every(c => r.collected.includes(c)))))
         return finish(r);
     if ((r.mode === 'royale' || r.mode === 'escape') && r.turn % (r.mode === 'escape' ? 1 : 2) === 0) {
-        const wave = upcomingDanger(r);
-        r.danger = [...r.danger, ...wave.filter(n => !(r.effects.shield && n === r.current))];
-        if (r.effects.shield) {
-            r.message = 'Shield absorbed the danger wave.';
-            r.effects.shield = false;
-        }
-        else
-            r.message += ' The danger zone is expanding.';
+        r.danger = [...r.danger, ...upcomingDanger(r)];
+        r.message += ' The danger zone is expanding.';
     }
     if (r.modifiers.includes('chaos') && r.turn % 3 === 0) {
         const choices = validMoves(r).filter(n => n !== r.target && !r.checkpoints.includes(n));
@@ -188,40 +165,6 @@ export function move(run: Run, countryId: string): Run {
         }
     }
     return finish(r);
-}
-export function useAbility(run: Run, ability: Ability): Run {
-    if (run.status !== 'playing' || run.abilities[ability] <= 0)
-        return run;
-    if (run.modifiers.includes('hardcore') && (ability === 'pulse' || ability === 'scout'))
-        return { ...run, message: 'Hardcore disables hints and scouting.' };
-    if (run.effects[ability as keyof Run['effects']])
-        return { ...run, message: 'That ability is already active.' };
-    const r = copy(run);
-    r.abilities[ability]--;
-    r.abilitiesUsed++;
-    if (ability === 'reroute') {
-        const local = r.blocked.find(id => countryById[r.current].neighbors.includes(id)), id = local ?? r.blocked[0];
-        if (id) {
-            r.blocked = r.blocked.filter(x => x !== id);
-            r.message = `Reroute opened ${countryById[id].name}.`;
-        }
-        else {
-            r.danger = r.danger.filter(id => !countryById[r.current].neighbors.includes(id));
-            r.message = 'Reroute cleared danger on neighboring countries.';
-        }
-    }
-    else {
-        r.effects[ability] = true;
-        r.message = { dash: 'Dash ready: cross up to two borders in one action.', shield: 'Shield armed. Your country survives one danger wave.', scout: 'Scout online. Next danger wave revealed.', pulse: 'Pulse active. Valid neighboring moves are highlighted.' }[ability];
-    }
-    return r;
-}
-export function undoMove(run: Run): Run {
-    if (run.modifiers.includes('hardcore') || !run.history.length || run.status !== 'playing')
-        return run;
-    const previous = run.history[run.history.length - 1];
-    // Undo never refunds abilities or time, preventing repeated free casts.
-    return { ...previous, abilities: { ...run.abilities }, abilitiesUsed: run.abilitiesUsed, timeLeft: run.timeLeft, history: run.history.slice(0, -1), message: 'Last move undone.' };
 }
 export function tick(run: Run, seconds = 1): Run {
     if (run.status !== 'playing')
